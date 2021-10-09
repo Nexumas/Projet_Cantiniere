@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {MdpoublieComponent} from './mdpoublie/mdpoublie.component';
-import {NavbarComponent} from "./navbar/navbar.component";
-import {IndexComponent} from "./index/index.component";
+import {NavbarComponent} from './navbar/navbar.component';
+import {IndexComponent} from './index/index.component';
 
 
 @NgModule({
