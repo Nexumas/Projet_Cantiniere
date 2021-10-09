@@ -1,0 +1,31 @@
+<div class="wrapper fadeInDown" id="form-login">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="./assets/img/icon.png" id="icon" alt="User Icon" />
+
+
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="email" required id="login" class="fadeIn second" name="login" placeholder="Adresse mail">
+      <input type="password" required id="password" class="fadeIn third" name="login" placeholder="Mot de passe">
+      <input type="submit" class="fadeIn fourth" value="Se connecter"><br>
+      <a class="underlineHover" id="btn-mdpoublie">Mot de passe oublié</a>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" [routerLink]="['/inscription']">Pas de compte ? Inscrivez-vous</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="wrapper fadeInDown" id="mdpoublie" style="display: none; margin-top: 0vh;">
+  <app-mdpoublie>
+  </app-mdpoublie>
+</div>
