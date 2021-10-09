@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import {MdpoublieComponent} from './mdpoublie/mdpoublie.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {IndexComponent} from './index/index.component';
+import {InscriptionComponent} from './inscription/inscription.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {IndexComponent} from './index/index.component';
     LoginComponent,
     MdpoublieComponent,
     NavbarComponent,
-    IndexComponent
+    IndexComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -25,4 +27,3 @@ import {IndexComponent} from './index/index.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

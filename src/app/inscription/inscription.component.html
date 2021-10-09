@@ -1,0 +1,27 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="./assets/img/icon.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" required id="prenom" class="fadeIn" name="prenom" placeholder="Prénom">
+      <input type="text" required id="nom" class="fadeIn" name="nom" placeholder="Nom">
+      <input type="email" required id="login" class="fadeIn second" name="login" placeholder="Adresse mail">
+      <input type="password" required id="password" class="fadeIn third" name="login" placeholder="Mot de passe">
+      <input type="submit" class="fadeIn fourth" value="S'inscrire">
+
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter" style="margin-top: 0vh !important;">
+
+      <a class="underlineHover" [routerLink]="['/login']">Déjà un compte ? Connectez-vous</a>
+    </div>
+
+  </div>
+</div>
