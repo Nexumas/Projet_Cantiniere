@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import {IndexComponent} from './index/index.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,12 @@ const routes: Routes = [
   },
   {
     path : 'panier',
-    component : PanierComponent,
+    component : PanierComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: PagenotfoundComponent
   }
 ];
 

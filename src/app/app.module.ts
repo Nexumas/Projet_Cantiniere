@@ -9,6 +9,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {IndexComponent} from './index/index.component';
 import {InscriptionComponent} from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PanierComponent } from './panier/panier.component';
     NavbarComponent,
     IndexComponent,
     InscriptionComponent,
-    PanierComponent
+    PanierComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
