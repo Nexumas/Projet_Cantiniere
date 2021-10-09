@@ -26,17 +26,17 @@ const routes: Routes = [
     component : PanierComponent
   },
   {
-    path: '**',
-    pathMatch: 'full',
-    component: PagenotfoundComponent
-  },
-  {
     path : 'gestion-plat',
     component : GestionPlatComponent,
   },
   {
     path : 'carte',
     component : CarteUserComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: PagenotfoundComponent
   }
 ];
 

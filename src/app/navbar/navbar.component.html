@@ -1,9 +1,9 @@
 <div class="nav" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed' : 'nofixed'">
     <div class="nav-section" id="plats">
-        <button class="btn-nav red" href="#">Plats de la semaine</button>
+        <button class="btn-nav red" [routerLink]="['/']">Plats de la semaine</button>
     </div>
     <div class="nav-section" id="carte">
-        <button class="btn-nav red" href="">Carte</button>
+        <button class="btn-nav red" [routerLink]="['/carte']">Carte</button>
     </div>
     <div class="nav-section-opt">
         <button class="btn-nav gray" [routerLink]="['/login']">Se connecter</button>
