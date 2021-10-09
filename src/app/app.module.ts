@@ -11,6 +11,7 @@ import {InscriptionComponent} from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
+import { CarteUserComponent } from './carte-user/carte-user.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
     InscriptionComponent,
     PanierComponent,
     PagenotfoundComponent,
-    GestionPlatComponent
+    GestionPlatComponent,
+    CarteUserComponent
   ],
   imports: [
     BrowserModule,

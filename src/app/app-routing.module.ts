@@ -6,6 +6,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
+import { CarteUserComponent } from './carte-user/carte-user.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path : 'gestion-plat',
     component : GestionPlatComponent,
+  },
+  {
+    path : 'carte',
+    component : CarteUserComponent
   }
 ];
 
