@@ -10,6 +10,7 @@ import {IndexComponent} from './index/index.component';
 import {InscriptionComponent} from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     IndexComponent,
     InscriptionComponent,
     PanierComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    GestionPlatComponent
   ],
   imports: [
     BrowserModule,

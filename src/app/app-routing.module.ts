@@ -5,6 +5,7 @@ import {IndexComponent} from './index/index.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { PanierComponent } from './panier/panier.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
     path: '**',
     pathMatch: 'full',
     component: PagenotfoundComponent
+  },
+  {
+    path : 'gestion-plat',
+    component : GestionPlatComponent,
   }
 ];
 
