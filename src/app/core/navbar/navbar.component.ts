@@ -7,15 +7,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-navbarfixed:boolean = false;
+navbarfixed = false;
 
   @HostListener('window:scroll', [ '$event']) onscroll(){
-    if(window.scrollY > 100){
-      this.navbarfixed = true;
-    }
-    else{
-      this.navbarfixed = false;
-    }
+    this.navbarfixed = window.scrollY > 100;
   }
 
   ngOnInit(): void{

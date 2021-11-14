@@ -3,15 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import {MdpoublieComponent} from './mdpoublie/mdpoublie.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {IndexComponent} from './index/index.component';
-import {InscriptionComponent} from './inscription/inscription.component';
-import { PanierComponent } from './panier/panier.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
-import { CarteUserComponent } from './carte-user/carte-user.component';
+import { LoginComponent } from './public/login/login.component';
+import {MdpoublieComponent} from './public/mdpoublie/mdpoublie.component';
+import {NavbarComponent} from './core/navbar/navbar.component';
+import {IndexComponent} from './public/index/index.component';
+import {InscriptionComponent} from './public/inscription/inscription.component';
+import { PanierComponent } from './public/panier/panier.component';
+import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
+import { GestionPlatComponent } from './private/admin/gestion-plat/gestion-plat.component';
+import { CarteUserComponent } from './public/carte-user/carte-user.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { CarteUserComponent } from './carte-user/carte-user.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import {IndexComponent} from './index/index.component';
-import { InscriptionComponent } from './inscription/inscription.component';
-import { PanierComponent } from './panier/panier.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { GestionPlatComponent } from './gestion-plat/gestion-plat.component';
-import { CarteUserComponent } from './carte-user/carte-user.component';
+import { LoginComponent } from './public/login/login.component';
+import {IndexComponent} from './public/index/index.component';
+import { InscriptionComponent } from './public/inscription/inscription.component';
+import { PanierComponent } from './public/panier/panier.component';
+import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
+import { GestionPlatComponent } from './private/admin/gestion-plat/gestion-plat.component';
+import { CarteUserComponent } from './public/carte-user/carte-user.component';
 
 const routes: Routes = [
   {

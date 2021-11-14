@@ -10,10 +10,10 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="email" required id="login" class="fadeIn second" name="login" placeholder="Adresse mail">
-      <input type="password" required id="password" class="fadeIn third" name="login" placeholder="Mot de passe">
-      <input type="submit" class="fadeIn fourth" value="Se connecter"><br>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <input  type="email" required id="login" class="fadeIn second" name="email" placeholder="Adresse mail" ngModel>
+      <input type="password" required id="password" class="fadeIn third" name="password" placeholder="Mot de passe" ngModel>
+      <button type="submit" class="fadeIn fourth">Se connecter</button><br>
       <a class="underlineHover" id="btn-mdpoublie">Mot de passe oublié</a>
     </form>
 
@@ -29,3 +29,5 @@
   <app-mdpoublie>
   </app-mdpoublie>
 </div>
+
+<p>{{loginError}}</p>
