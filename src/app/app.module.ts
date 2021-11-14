@@ -13,9 +13,9 @@ import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.componen
 import { GestionPlatComponent } from './private/admin/gestion-plat/gestion-plat.component';
 import { CarteUserComponent } from './public/carte-user/carte-user.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
