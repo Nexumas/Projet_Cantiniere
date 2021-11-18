@@ -1,37 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './public/login/login.component';
-import {IndexComponent} from './public/index/index.component';
-import { InscriptionComponent } from './public/inscription/inscription.component';
-import { PanierComponent } from './public/panier/panier.component';
-import { PagenotfoundComponent } from './core/pagenotfound/pagenotfound.component';
-import { GestionPlatComponent } from './private/admin/gestion-plat/gestion-plat.component';
-import { CarteUserComponent } from './public/carte-user/carte-user.component';
+import { PagenotfoundComponent } from './core/components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent
+    pathMatch: 'full',
+    redirectTo: 'public'
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'public',
+    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule)
   },
   {
-    path: 'inscription',
-    component: InscriptionComponent
-  },
-  {
-    path : 'panier',
-    component : PanierComponent
-  },
-  {
-    path : 'gestion-plat',
-    component : GestionPlatComponent,
-  },
-  {
-    path : 'carte',
-    component : CarteUserComponent
+    path: 'private',
+    loadChildren: () => import('./private/private.module').then((m) => m.PrivateModule)
   },
   {
     path: '**',
