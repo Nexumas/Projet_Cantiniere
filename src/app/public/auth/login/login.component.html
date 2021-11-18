@@ -1,0 +1,32 @@
+<div class="container">
+  <form [formGroup]="loginform" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div>
+      <h1>Connexion</h1>
+    </div>
+    <div>
+      <input type="text" formControlName="email" placeholder="E-mail" ngModel/>
+    </div>
+    <div>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Mot de passe"
+        ngModel />
+    </div>
+    <div>
+      <input type="submit" value="Se connecter" />
+    </div>
+    <div>
+      <button (click)="forgotpassword()" class="forgotpassword">
+        Mot de passe oublié ?
+      </button>
+    </div>
+    <div>
+      <hr />
+    </div>
+    <div>
+      <button (click)="signup()" class="signup">Inscrivez-vous</button>
+    </div>
+  </form>
+</div>
+

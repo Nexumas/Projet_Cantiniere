@@ -1,0 +1,33 @@
+<div class="nav">
+  <div class="bar">
+
+    <div class="logo">
+      <mat-icon class="item-logo">dining</mat-icon>
+      <h2>cantinière</h2>
+    </div>
+
+    <ul>
+      <li>
+        <mat-icon [routerLink]="['/']"  class="item-nav">lunch_dining</mat-icon>
+        <a class="nav-link" [routerLink]="['/']"><div>Plats de la semaine</div></a>
+      </li>
+      <li>
+        <mat-icon [routerLink]="['public/carddishes']" class="item-nav">list_alt</mat-icon>
+        <a class="nav-link" [routerLink]="['public/carddishes']">Carte</a>
+      </li>
+      <li *ngIf="(auth.isConnected() | async) as authenticated; else unauthenticated">
+        <mat-icon [routerLink]="" class="item-nav">account_circle</mat-icon>
+        <a class="nav-link" [routerLink]="">Profil</a>
+      </li>
+      <li #unauthenticated>
+        <mat-icon [routerLink]="['public/auth/login']" class="item-nav">login</mat-icon>
+        <a class="nav-link" [routerLink]="['public/auth/login']">Login</a>
+      </li>
+      <li>
+        <mat-icon [routerLink]="['public/cart']" class="item-nav">shopping_cart</mat-icon>
+        <a class="nav-link" [routerLink]="['public/cart']">Panier</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
