@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PrivateRoutingModule } from './private-routing.module';
 import {AdminModule} from './admin/admin.module';
 import {UserAccountComponent} from './user/user-account/user-account.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -13,7 +15,7 @@ import {UserAccountComponent} from './user/user-account/user-account.component';
   imports: [
     CommonModule,
     PrivateRoutingModule,
-    AdminModule
+    AdminModule,
   ]
 })
 export class PrivateModule { }

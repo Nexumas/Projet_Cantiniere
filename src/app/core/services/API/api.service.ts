@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpResponse} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,19 @@ export class ApiService {
       return this.http.request('POST', this.API_URL + '/register', {body, responseType: 'json', observe: 'response'});
     }catch (e){
       throw new Error('Echec de la création du compte !');
+    }
+  }
+
+  // Appel API pour liste utilisateur
+  findAllUser(): Observable<any[]>{
+    try{
+      return this.http.get<any[]>(this.API_URL + '/user/findall')
+        .pipe(
+          map((users: any[]) => users)
+        );
+
+    }catch (e){
+      throw new Error('Echec de la récupération des utilisateurs!');
     }
   }
 
