@@ -18,6 +18,11 @@ import { CardDishesComponent } from './card-dishes/card-dishes.component';
     CommonModule,
     PublicRoutingModule,
     AuthModule
+  ],
+  exports: [
+    HomeComponent,
+    CartComponent,
+    CardDishesComponent
   ]
 })
 export class PublicModule { }

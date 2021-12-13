@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {CoreModule} from './core/core.module';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CoreModule} from './core/core.module';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    CoreModule
+    CoreModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

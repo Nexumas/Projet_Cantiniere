@@ -1,40 +1,60 @@
 <div class="container">
-  <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div>
       <h1>Inscription</h1>
     </div>
-    <mat-radio-group>
-      <mat-radio-button value="1">Homme</mat-radio-button>
-      <mat-radio-button value="2">Femme</mat-radio-button>
+    <mat-radio-group formControlName="sex">
+      <mat-radio-button value=1 [checked]="true">Homme</mat-radio-button>
+      <mat-radio-button value=2>Femme</mat-radio-button>
     </mat-radio-group>
     <div>
-      <input type="text" formControlName="firstname" placeholder="Prenom" />
+      <input type="text" formControlName="firstname" placeholder="Prenom" ngModel/>
+      <div class="errors" *ngIf="signupForm.controls.firstname?.hasError('required') && signupForm.controls.firstname?.dirty">
+        prenom requis !
+      </div>
     </div>
     <div>
-      <input type="text" formControlName="lastname" placeholder="Nom" />
+      <input type="text" formControlName="lastname" placeholder="Nom" ngModel/>
+      <div class="errors" *ngIf="signupForm.controls.lastname?.hasError('required') && signupForm.controls.lastname?.dirty">
+        nom requis !
+      </div>
     </div>
     <div>
-      <input type="text" formControlName="email" placeholder="E-mail" />
+      <input type="text" formControlName="email" placeholder="E-mail" ngModel/>
+      <div class="errors" *ngIf="signupForm.controls.email?.hasError('required') && signupForm.controls.email?.dirty">
+        email requis !
+      </div>
     </div>
     <div>
       <input
         type="password"
         formControlName="password"
         placeholder="Mot de passe"
-      />
+        ngModel/>
+      <div class="errors" *ngIf="signupForm.controls.password?.hasError('required') && signupForm.controls.password?.dirty">
+        mot de passe requis !
+      </div>
     </div>
     <div>
       <input
         type="password"
-        formControlName="confirmpassword"
+        formControlName="confirmPassword"
         placeholder="Confirmer mot de passe"
-      />
+        ngModel/>
+      <div class="errors" *ngIf="signupForm.controls.confirmPassword?.hasError('required')
+      && signupForm.controls.confirmPassword?.dirty
+      || signupForm.controls.password?.value != signupForm.controls.confirmPassword?.value && signupForm.controls.confirmPassword?.dirty">
+        doit être identique au mot de passe !
+      </div>
     </div>
     <div>
       <input type="submit" value="S'inscrire" />
     </div>
     <div>
       <button (click)="login()" class="login">Déjà un compte ?</button>
+    </div>
+    <div class="errors" style="text-align: center;" *ngIf="signupForm.invalid && submitted === true">
+      Formulaire invalide !
     </div>
   </form>
 </div>

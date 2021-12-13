@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagenotfoundComponent } from './core/components/pagenotfound/pagenotfound.component';
+import {LogOnGuard} from './core/guards/logon/log-on.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,10 @@ const routes: Routes = [
   },
   {
     path: 'private',
-    loadChildren: () => import('./private/private.module').then((m) => m.PrivateModule)
+    loadChildren: () => import('./private/private.module').then((m) => m.PrivateModule),
+    canActivate: [
+      LogOnGuard
+    ]
   },
   {
     path: '**',
