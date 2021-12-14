@@ -11,6 +11,7 @@ export class OnAdminGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router, private notif: AlertService) {}
 
+  //Route activé si on est connecté en admin
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

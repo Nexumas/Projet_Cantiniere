@@ -9,12 +9,12 @@
     <ul>
       <li *ngIf="auth.isConnected() | async as authenticated; else unauthenticated">
         <div class="dropdown">
-          <mat-icon [routerLink]="['/private/account']" class="item-nav" matTooltip="Profil">account_circle</mat-icon>
+          <mat-icon [routerLink]="['/private/account']" class="item-nav">account_circle</mat-icon>
           <a class="nav-link" [routerLink]="['/private/account']">Profil</a>
           <ul class="dropdown-content">
             <li><mat-icon [routerLink]="['/private/account']" class="item-nav" matTooltip="Mon Profil">manage_accounts</mat-icon>
             <a [routerLink]="['/private/account']">Mon Profil</a></li>
-            <li><mat-icon [routerLink]="['/private/account']" class="item-nav" matTooltip="Déconnexion">logout</mat-icon>
+            <li><mat-icon [routerLink]="['/private/account']" class="item-nav" (click)="auth.disconnect()" matTooltip="Déconnexion">logout</mat-icon>
             <a href="#" (click)="auth.disconnect()">Déconnexion</a></li>
           </ul>
         </div>

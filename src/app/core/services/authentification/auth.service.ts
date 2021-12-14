@@ -17,10 +17,16 @@ export class AuthService {
   private _isAdmin$ = new BehaviorSubject<boolean>(false);
 
   constructor(private apiService: ApiService, private notif: AlertService, private router: Router, private user: UsersService) {
+    //maintien de la connexion si token existe
     const token = sessionStorage.getItem('token_api');
-    const lunchlady = sessionStorage.getItem('lunchlady');
     this._isLoggedIn$.next(!!token);
-    this._isAdmin$.next(!!lunchlady);
+
+    //vérifie le status admin de l'utilisateur connecté en cas d'actualisation
+    if(!!token){
+      if(jwt_decode(sessionStorage.getItem('token_api'))['roles'][0] === 'ROLE_LUNCHLADY'){
+        this._isAdmin$.next(true);
+      }
+    }
   }
 
   //Vérification de connexion en asynchrone
@@ -33,6 +39,7 @@ export class AuthService {
     return this._isAdmin$.asObservable();
   }
 
+  //Logger l'utilisateur
  login(email: string, password: string): void{
       this.apiService.login(email, password).subscribe(async (data: any) => {
       this._isLoggedIn$.next(true);
@@ -47,12 +54,13 @@ export class AuthService {
   decryptJWT(token: string): void{
     const data: JSON = jwt_decode(token)['user'];
 
-    sessionStorage.setItem('user_id', data['id']);
-
-    if (data != null && data['isLunchLady'] === true){
-      sessionStorage.setItem('lunchlady', 'status');
+    //vérifier si admin
+    if(data['isLunchLady'] === true){
       this._isAdmin$.next(true);
     }
+
+    //on enregistre l'admin
+    sessionStorage.setItem('user_id', data['id']);
   }
 
   // Deconnexion de l'utilisateur
@@ -65,6 +73,7 @@ export class AuthService {
     }
   }
 
+  //inscrire l'utilisateur
   async register(email: string, password: string, username: string, firstname: string, sex: number): Promise<void> {
     try {
       this.apiService.register(email, password, username, firstname, sex).subscribe();

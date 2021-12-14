@@ -11,6 +11,7 @@ export class LogOnGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router, private notif: AlertService){}
 
+  //Route activé si on est connecté
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
