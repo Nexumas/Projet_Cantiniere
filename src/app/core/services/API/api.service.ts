@@ -50,4 +50,24 @@ export class ApiService {
     }
   }
 
+  // Appel API pour cartes
+  mealsForThisWeek(): Observable<HttpResponse<object>>{
+    try{
+      return this.http.request('GET', this.API_URL + '/meal/findallavailablefortoday', {responseType: 'json', observe: 'response'});
+    }catch (e){
+      throw new Error('Echec de la recuperation des infos !');
+    }
+  }
+
+  // Appel API pour MDP oublié
+  forgotpassword(email : string): Observable<HttpResponse<object>>{
+    try{
+      const body = email;
+      return this.http.request('POST', this.API_URL + '/forgotpassword', {body, responseType: 'json', observe: 'response'});
+    }catch (e){
+      throw new Error('Echec de la recuperation de l\'info !');
+    }
+  }
+
+
 }
