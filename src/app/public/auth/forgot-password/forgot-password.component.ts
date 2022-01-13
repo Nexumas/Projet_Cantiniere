@@ -18,7 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.forgotpasswordform = new FormGroup({
-      email: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email])
     });
   }
 
@@ -27,8 +27,16 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(f: FormGroupDirective): void {
+    if(this.forgotpasswordform.valid) {
       this.apiService.forgotpassword(f.value.email).pipe(
-        data.map =>
+        //npm data.map =>
       )
+      this.notif.onSuccess("email envoyé !");
+      this.router.navigate(['public/auth/login']);
+    }else{
+      this.notif.onError("Erreur email invalide !");
+    }
+
   }
+
 }
