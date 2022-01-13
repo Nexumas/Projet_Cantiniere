@@ -67,6 +67,7 @@ export class ApiService {
     }catch (e){
       throw new Error('Echec de la recuperation de l\'info !');
     }
+    //test
   }
 
 
