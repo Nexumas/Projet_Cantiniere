@@ -1,0 +1,30 @@
+<div class="category">
+  <button type="button" class="collapsible" (click)="display()">{{ name }}</button>
+  <div class="content" *ngIf="selectedStatus()">
+    <div *ngIf="collectionSize != 0 as notNull; else noValues">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+          </tr>
+        </thead>
+
+        <tbody *ngFor="let index of (object$ | async) | slice: (page-1) * pageSize : page * pageSize;">
+          <tr>
+            <th scope="row">{{ index.label }}</th>
+            <td>{{ index.price }}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [pageSize]="pageSize"></ngb-pagination>
+      </table>
+    </div>
+    <ng-template #noValues>
+      <p>Vide</p>
+    </ng-template>
+  </div>
+</div>

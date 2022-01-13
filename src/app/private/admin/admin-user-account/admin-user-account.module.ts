@@ -19,7 +19,6 @@ import {MatSortModule} from '@angular/material/sort';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {LtMeal} from '../../models/meal/meal';
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +71,35 @@ export class ApiService {
     //test
   }
 
+
+  // Appel API pour récupérer tous les repas
+  findAllMeal(): Observable<any[]>{
+    try{
+      return this.http.get<any[]>(this.API_URL + '/meal/findall', {headers: this.createAuthorizationHeader()})
+        .pipe(
+          map((meals: LtMeal[]) => meals)
+        );
+    }catch (e){
+      throw new Error('Echec de la récupération des repas !');
+    }
+  }
+
+  // Appel API pour supprimer un repas
+  deleteMeal(id: number): Observable<object>{
+    try{
+      return this.http.request('DELETE',this.API_URL + '/meal/delete/' + id);
+    }catch (e){
+      throw new Error('Echec de la suppression des repas !');
+    }
+  }
+
+  // Appel API pour récupérer tous les ingrédients
+  findAllIngredient(){
+    try{
+      return this.http.request('GET',this.API_URL + '/ingredient/findall/', {headers: this.createAuthorizationHeader(), responseType: 'json', observe: 'response'});
+    }catch (e){
+      throw new Error('Echec de la récupération des ingredients !');
+    }
+  }
 
 }

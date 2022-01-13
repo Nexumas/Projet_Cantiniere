@@ -10,7 +10,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {CoreModule} from './core/core.module';
 import {SimpleNotificationsModule} from 'angular2-notifications';
-
+import {SharedModule} from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     MatButtonModule,
     MatMenuModule,
     CoreModule,
-    SimpleNotificationsModule.forRoot()
+    SharedModule,
+    SimpleNotificationsModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

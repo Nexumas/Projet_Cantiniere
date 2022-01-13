@@ -4,21 +4,28 @@ import {LeftsidebarComponent} from './components/leftsidebar/leftsidebar.compone
 import {PublicRoutingModule} from '../public/public-routing.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CategoriesComponent } from './components/categories/categories.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @NgModule({
     declarations: [
-        LeftsidebarComponent
+        LeftsidebarComponent,
+        CategoriesComponent
     ],
     exports: [
-        LeftsidebarComponent
+        LeftsidebarComponent,
+        CategoriesComponent
     ],
-    imports: [
-        CommonModule,
-        PublicRoutingModule,
-        MatIconModule,
-        MatTooltipModule,
-    ]
+  imports: [
+    CommonModule,
+    PublicRoutingModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatExpansionModule,
+    NgbModule,
+  ]
 })
 export class CoreModule { }

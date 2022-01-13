@@ -43,6 +43,10 @@
         <a class="nav-link" [routerLink]="['public/carddishes']">Carte</a>
       </li>
       <li *ngIf="auth.isAdmin() | async">
+        <mat-icon [routerLink]="['private/admin/card-edit']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
+        <a class="nav-link" [routerLink]="['private/admin/card-edit']">Edition Carte</a>
+      </li>
+      <li *ngIf="auth.isAdmin() | async">
           <mat-icon [routerLink]="['private/admin/usersaccount']" class="item-nav" matTooltip="Comptes Utilisateur">person_search</mat-icon>
           <a class="nav-link" [routerLink]="['private/admin/usersaccount']">Comptes Utilisateur</a>
       </li>
