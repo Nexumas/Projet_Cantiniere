@@ -18,20 +18,20 @@ export class MealService {
 
   constructor(private apiService: ApiService, private ingredientService: IngredientService) { }
 
-
+  //récupère tous les repas et le retourne en Observable
   getAllMeals(): BehaviorSubject<any> {
 
     this.apiService.findAllMealForThisWeek().subscribe(value  => {
-      this.addMeal(value);
+      this.addMealToList(value);
       this._ltMeal$.next(this.getMealList());
     })
     return this._ltMeal$;
   }
 
-  addMeal(data){
+  //ajouter un ou plusieurs tableaux de LtMeal à une liste
+  addMealToList(data){
     let meal: LtMeal;
     data.filter(index => {
-
       this.ingredientService.addIngredient(index['ingredients']);
       meal = {
         id: index['id'],
@@ -42,11 +42,11 @@ export class MealService {
         imageId: index['imageId'],
         price: index['priceDF']
       }
-
       this.meals.push(meal);
     });
   }
 
+  //récupérer une liste de LtMeal
   getMealList(): LtMeal[] {
     return this.meals;
   }

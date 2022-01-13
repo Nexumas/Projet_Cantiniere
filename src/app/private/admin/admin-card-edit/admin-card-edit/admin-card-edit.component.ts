@@ -16,7 +16,9 @@ export class AdminCardEditComponent implements OnInit {
   meal: LtMeal[];
   ingredients: LtIngredient[];
   weeks: any[] = [];
-  t = new FormControl();
+  ingredientChoiceList: LtIngredient[] = [];
+  dateChoice = new FormControl();
+  ingredientsChoice;
 
   constructor(private mealService: MealService, private ingredientService: IngredientService) {}
 
@@ -63,9 +65,9 @@ export class AdminCardEditComponent implements OnInit {
   }
 
   weekSelected() {
-    if(this.weeks.length == 0 || this.t.value != null) {
+    if(this.weeks.length == 0 || this.dateChoice.value != null) {
       let d = new Date();
-      d.setFullYear(this.t.value.getYear(), this.t.value.getMonth(), this.t.value.getDate());
+      d.setFullYear(this.dateChoice.value.getYear(), this.dateChoice.value.getMonth(), this.dateChoice.value.getDate());
 
       if(!this.weeks.includes(this.getWeekNumber(d))){
         this.weeks.push(this.getWeekNumber(d));
@@ -78,6 +80,25 @@ export class AdminCardEditComponent implements OnInit {
        if(value == index){
          this.weeks.splice(this.weeks.indexOf(value),1)
        }
+    })
+  }
+
+  addIngredientChoice(){
+    if(this.ingredientChoiceList.length == 0 || this.ingredientsChoice.value != null){
+      let label;
+      this.ingredientsChoice.value.filter(index => label = index.label);
+      console.log(label);
+      if(!this.ingredientChoiceList.includes(label)){
+        this.ingredientChoiceList.push(label);
+      }
+    }
+  }
+
+  deleteIngredientChoice(value){
+    this.ingredientChoiceList.forEach(index => {
+      if(value === index){
+        this.ingredientChoiceList.splice(this.ingredientChoiceList.indexOf(value), 1);
+      }
     })
   }
 
