@@ -71,4 +71,10 @@ export class MealService {
     }
   }
 
+  deleteMeal(id){
+    this.apiService.deleteMeal(id);
+  }
+
+
+
 }
