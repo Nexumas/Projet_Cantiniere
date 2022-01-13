@@ -21,7 +21,7 @@ export class MealService {
   //récupère tous les repas et le retourne en Observable
   getAllMeals(): BehaviorSubject<any> {
 
-    this.apiService.findAllMealForThisWeek().subscribe(value  => {
+    this.apiService.findAllMeal().subscribe(value  => {
       this.addMealToList(value);
       this._ltMeal$.next(this.getMealList());
     })

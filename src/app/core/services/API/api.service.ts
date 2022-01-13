@@ -52,7 +52,7 @@ export class ApiService {
   }
 
   // Appel API pour récupérer tous les repas
-  findAllMealForThisWeek(): Observable<any[]>{
+  findAllMeal(): Observable<any[]>{
     try{
       return this.http.get<any[]>(this.API_URL + '/meal/findall', {headers: this.createAuthorizationHeader()})
         .pipe(
