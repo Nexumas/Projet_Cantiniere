@@ -1,0 +1,44 @@
+.title {
+  background: #9e3b3b;
+  color: #fff;
+  width: 400px;
+  height: 50px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.info {
+  background: rgb(243, 243, 243);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  padding-left: 10px;
+}
+
+.cagnotte {
+  border: 1px solid #9e3b3b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 50px;
+}
+
+.cagn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.vertiligne {
+  border-left: 1px solid black;
+  height: 200px;
+  display: inline-block;
+}
