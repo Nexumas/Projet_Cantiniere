@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Ltuser } from 'src/app/core/models/User/ltuser';
+import { UsersService } from 'src/app/core/services/users/users.service';
 
 @Component({
   selector: 'app-user-account-information',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccountInformationComponent implements OnInit {
 
-  constructor() { }
+  user : Ltuser;
+
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
   }

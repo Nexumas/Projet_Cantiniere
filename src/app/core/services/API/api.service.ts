@@ -102,4 +102,13 @@ export class ApiService {
     }
   }
 
+  // Appel API pour récupérer les informations d'un user
+  findUser(id: number): Observable<HttpResponse<object>>{
+    try{
+      return this.http.request('GET', this.API_URL + '/user/find/' + id, {headers: this.createAuthorizationHeader(), responseType: 'json', observe: 'response'});
+    }catch (e){
+      throw new Error('Echec de la recuperation des infos !');
+    }
+  }
+
 }

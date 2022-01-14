@@ -1,13 +1,16 @@
 export interface Ltuser {
-    email: string,
-    username: string,
-    firstName: string,
-    sex: string,
-    wallet: string,
-    phone?: string,
-    address?: string,
-    postalCode?: string,
-    image?: string[]
+  id: number,
+  address: string,
+  wallet: number,
+  postalCode: number,
+  registrationDate: string,
+  email: string,
+  isLunchLady: boolean,
+  name: string,
+  firstname: string,
+  phone: string,
+  town: string,
+  sex: number,
+  status: number,
+  imageId: number
 }
-
-

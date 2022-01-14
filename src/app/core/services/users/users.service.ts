@@ -3,34 +3,45 @@ import {Ltuser} from '../../models/User/ltuser';
 import jwt_decode from 'jwt-decode';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import { ApiService } from '../API/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-   user: Ltuser;
+  user: Ltuser;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
-  add(token: string){
-    const data: JSON = jwt_decode(token)['user'];
+  add(data){
 
     this.user = {
-
+      id: data['id'],
       email: data['email'],
-      firstName: data['firstname'],
+      firstname: data['firstname'],
       sex: data['sex'],
-      username: data['name'],
+      name: data['name'],
       wallet: data['wallet'],
       phone: data['phone'],
       address: data['address'],
-      postalCode: data['postalCode']
-
+      postalCode: data['postalCode'],
+      registrationDate: data['registrationDate'],
+      isLunchLady: data['isLunchLady'],
+      town: data['town'],
+      status: data['status'],
+      imageId: data['imageId']
     }
   }
 
   get():Ltuser {
     return this.user;
+  }
+
+  findUser(id: number):Ltuser {
+    this.apiService.findUser(id).subscribe(user => {
+      this.add(user.body);
+    })
+    return this.get();
   }
 }
