@@ -6,3 +6,12 @@ export enum MealCategory {
    cat7 = 'Potages',
    cat9 = 'Boissons'
 }
+
+export enum MealCategoryValue {
+  Accompagnements = 1,
+  Entrees = 2,
+  Plats = 3,
+  Desserts = 5,
+  Potages = 7,
+  Boissons = 9
+}

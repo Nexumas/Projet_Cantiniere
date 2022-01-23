@@ -1,7 +1,7 @@
 <div class="category">
   <button type="button" class="collapsible" (click)="display()">{{ name }}</button>
   <div class="content" *ngIf="selectedStatus()">
-    <div *ngIf="collectionSize != 0 as notNull; else noValues">
+    <div *ngIf="collectionSize != 0; else noValues">
       <table class="table">
         <thead>
           <tr>
@@ -12,16 +12,16 @@
           </tr>
         </thead>
 
-        <tbody *ngFor="let index of (object$ | async) | slice: (page-1) * pageSize : page * pageSize;">
+        <tbody *ngFor="let index of (list | async) | slice: (page-1) * pageSize : page * pageSize;">
           <tr>
             <th scope="row">{{ index.label }}</th>
-            <td>{{ index.price }}</td>
-            <td></td>
-            <td></td>
+            <td>{{ index.price }} €</td>
+            <td><mat-icon (click)="getValueToEdit(index)">mode_edit</mat-icon></td>
+            <td><mat-icon (click)="getValueToDelete(index)">clear</mat-icon ></td>
           </tr>
         </tbody>
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [pageSize]="pageSize"></ngb-pagination>
       </table>
+      <ngb-pagination [collectionSize]="(collectionSize | async)" [(page)]="page" [maxSize]="5" [pageSize]="pageSize"></ngb-pagination>
     </div>
     <ng-template #noValues>
       <p>Vide</p>

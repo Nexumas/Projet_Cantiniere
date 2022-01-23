@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {MealService} from '../../../../core/services/meal/meal.service';
-import {FormControl, NgForm} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {IngredientService} from '../../../../core/services/ingredient/ingredient.service';
 import {LtMeal} from '../../../../core/models/meal/meal';
 import {LtIngredient} from '../../../../core/models/ingredient/ingredient';
+import { AlertService } from 'src/app/core/services/alert/alert.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-card-edit',
@@ -13,25 +15,41 @@ import {LtIngredient} from '../../../../core/models/ingredient/ingredient';
 })
 export class AdminCardEditComponent implements OnInit {
 
-  meal: LtMeal[];
-  ingredients: LtIngredient[];
-  weeks: any[] = [];
-  ingredientChoiceList: LtIngredient[] = [];
-  dateChoice = new FormControl();
-  ingredientsChoice;
+  meal: LtMeal[]; // pour les meals récupérés
+  ingredients: LtIngredient[]; // pour les ingrédients récupérés
 
-  constructor(private mealService: MealService, private ingredientService: IngredientService) {}
+  weeks: number[] = []; // pour les semaines choisis
+  ingredientChoiceList: LtIngredient[] = []; //pour le mat-select
+  ingredientListForm = []; //pour le submit
 
-  ngOnInit(): void {
+  ingredientsChoice; // value ingrédient choisi pour le mat-select
+  dateChoice = new FormControl(); // date choisi
 
-    //On récupère tous les repas
-    this.mealService.getAllMeals().subscribe(value => {
-      this.meal = value;
+  cardEditForm: FormGroup;
+
+  mealIdEdition: number;
+  isEdition: boolean = false;
+
+
+  constructor(private router: Router, private mealService: MealService, private ingredientService: IngredientService, private notif: AlertService) {}
+
+  async ngOnInit(): Promise<void> {
+
+    this.cardEditForm = new FormGroup({
+      label: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required)
     });
 
-    //On récupère tous les ingredients
-    this.ingredients = this.ingredientService.findAllIngredient();
-    this.ingredients.filter(index => console.log(index));
+    await this.ingredientService.findAllIngredient().subscribe(index => {
+      this.ingredients = index;
+    });
+
+    //On récupère tous les repas
+    await this.mealService.getAllMeals().then(value => {
+      value.subscribe(index => this.meal = index);
+    });
+
   }
 
   //récupération du nom de la catégorie demandé
@@ -40,19 +58,43 @@ export class AdminCardEditComponent implements OnInit {
   }
 
   //On créé une liste de repas en fonction de la catégorie demandé
-  getMealListForCategory(number: number): Observable<LtMeal[]> {
-
-    let list$: BehaviorSubject<LtMeal[]> = new BehaviorSubject(null);
+  getMealList(): LtMeal[] {
     let temp: LtMeal[] = [];
-
     this.meal.forEach(index => {
-      if (number === index['category']) {
-        temp.push(index);
-      }
-    });
+      temp.push(index);
+    })
+    return temp;
+  }
 
-    list$.next(temp);
-    return list$.asObservable();
+  getCategoryList(): any[]{
+    return this.mealService.getCategoryList();
+  }
+
+  updateMeal(meal){
+    if(meal.weeks !== null) {
+      this.weeks = meal.weeks;
+    }
+    this.mealIdEdition = meal.id
+    meal.ingredients.forEach(index => {
+      this.ingredientChoiceList.push(index.label);
+      this.ingredientListForm.push(index.id);
+      this.cardEditForm.controls['label'].setValue(meal.label);
+      this.cardEditForm.controls['price'].setValue(meal.price);
+      this.cardEditForm.controls['category'].setValue(this.getCategoryName('cat' + meal.category));
+    });
+    this.isEdition = true;
+  }
+
+  cancelEdition(){
+    if(this.isEdition === true){
+      this.isEdition = false;
+      this.weeks = [];
+      this.ingredientChoiceList = [];
+      this.ingredientListForm = [];
+      this.cardEditForm.controls['label'].setValue('');
+      this.cardEditForm.controls['price'].setValue('');
+      this.cardEditForm.controls['category'].setValue('');
+    }
   }
 
   getWeekNumber(d) {
@@ -77,20 +119,23 @@ export class AdminCardEditComponent implements OnInit {
 
   deleteWeek(value){
     this.weeks.forEach(index => {
-       if(value == index){
-         this.weeks.splice(this.weeks.indexOf(value),1)
-       }
-    })
+      if(value == index){
+        this.weeks.splice(this.weeks.indexOf(value),1)
+      }
+    });
   }
 
   addIngredientChoice(){
-    if(this.ingredientChoiceList.length == 0 || this.ingredientsChoice.value != null){
-      let label;
-      this.ingredientsChoice.value.filter(index => label = index.label);
-      console.log(label);
+    if(this.ingredientChoiceList.length == 0 || this.ingredientsChoice != null){
+      let label = this.ingredientsChoice.label;
+
       if(!this.ingredientChoiceList.includes(label)){
         this.ingredientChoiceList.push(label);
       }
+
+      this.ingredientListForm.push(this.ingredientsChoice.id);
+
+      this.ingredientListForm.forEach(index => console.log(index));
     }
   }
 
@@ -98,8 +143,59 @@ export class AdminCardEditComponent implements OnInit {
     this.ingredientChoiceList.forEach(index => {
       if(value === index){
         this.ingredientChoiceList.splice(this.ingredientChoiceList.indexOf(value), 1);
+        this.ingredientListForm.splice(this.ingredientListForm.indexOf(value.id), 1);
       }
-    })
+    });
   }
 
+  onSubmit() {
+
+    if (this.cardEditForm.valid && this.weeks.length > 0) {
+
+      if (this.isEdition === false) {
+        this.mealService.addMeal(this.cardEditForm.value.label,
+          this.cardEditForm.value.price,
+          this.weeks,
+          this.mealService.getCategoryValue(this.cardEditForm.value.category),
+          this.ingredientListForm);
+
+        this.notif.onSuccess('Repas créé !')
+        this.mealService.clearList();
+        this.mealService.getAllMeals().then(value => {
+          value.subscribe(index => this.meal = index);
+        });
+
+      } else {
+
+        this.mealService.updateMeal(this.mealIdEdition,
+          this.cardEditForm.value.label,
+          this.cardEditForm.value.price,
+          this.weeks,
+          this.mealService.getCategoryValue(this.cardEditForm.value.category),
+          this.ingredientListForm);
+        this.notif.onSuccess('Repas mis à jour !');
+
+        this.mealService.clearList();
+        this.mealService.getAllMeals().then(value => {
+          value.subscribe(index => this.meal = index);
+        });
+
+      }
+    } else {
+
+      this.notif.onError('Formulaire incorrect !');
+
+    }
+  }
+
+  deleteMeal(meal){
+
+    this.mealService.deleteMeal(meal.id);
+    this.notif.onSuccess('Elément supprimé !');
+    this.mealService.clearList();
+    this.mealService.getAllMeals().then(value => {
+      value.subscribe(index => this.meal = index);
+    });
+
+  }
 }

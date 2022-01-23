@@ -1,102 +1,119 @@
 <div class="d-flex flex-row mt-5">
   <div class="categories-list">
-    <app-categories [name]="getCategoryName('cat1')" [obj]="getMealListForCategory(1)"></app-categories>
-    <app-categories [name]="getCategoryName('cat2')" [obj]="getMealListForCategory(2)"></app-categories>
-    <app-categories [name]="getCategoryName('cat7')" [obj]="getMealListForCategory(7)"></app-categories>
-    <app-categories [name]="getCategoryName('cat3')" [obj]="getMealListForCategory(3)"></app-categories>
-    <app-categories [name]="getCategoryName('cat5')" [obj]="getMealListForCategory(5)"></app-categories>
-    <app-categories [name]="getCategoryName('cat9')" [obj]="getMealListForCategory(9)"></app-categories>
+    <app-categories [cat]="1" [name]="getCategoryName('cat1')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
+    <app-categories [cat]="2" [name]="getCategoryName('cat2')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
+    <app-categories [cat]="7" [name]="getCategoryName('cat7')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
+    <app-categories [cat]="3" [name]="getCategoryName('cat3')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
+    <app-categories [cat]="5" [name]="getCategoryName('cat5')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
+    <app-categories [cat]="9" [name]="getCategoryName('cat9')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
   </div>
 
   <div class="d-flex  justify-content-center w-50">
-    <div class="">
-        <div class="">
-          <form class="input-form">
+    <form class="input-form" [formGroup]="cardEditForm" (ngSubmit)="onSubmit()">
 
-            <div class="row">
+      <div class="row">
 
-              <div class="col">
-                <mat-form-field appearance="fill">
-                  <mat-label>Nom</mat-label>
-                  <input matInput type="text">
-                </mat-form-field>
-              </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" formControlName="label">
+          </mat-form-field>
+        </div>
 
-              <div class="col">
-                <mat-form-field appearance="fill">
-                  <mat-label>Prix</mat-label>
-                  <input matInput type="number">
-                </mat-form-field>
-              </div>
-            </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Prix</mat-label>
+            <input matInput type="number" formControlName="price">
+          </mat-form-field>
+        </div>
 
-            <div class="row">
+      </div>
 
-              <div class="col">
-                <mat-form-field appearance="fill">
-                  <mat-label>Semaine</mat-label>
-                  <input matInput [matDatepicker]="picker" [formControl]="dateChoice">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="weekSelected()">Ajouter</button>
-              </div>
+      <div class="row">
 
-              <div class="col">
-                <div *ngIf="weeks.length != 0">
-                  <mat-label>Semaines : </mat-label>
-                  <div *ngFor="let index of weeks">
-                    <div class="row">
-                      <div class="col">
-                        <p>S{{ index }}</p>
-                      </div>
-                      <div class="col">
-                        <mat-icon (click)="deleteWeek(index)">clear</mat-icon >
-                      </div>
-                    </div>
-                  </div>
+        <div class="col">
+          <h4>Choix des semaines : </h4>
+          <mat-form-field appearance="fill">
+            <mat-label>Semaine</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="dateChoice">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <a mat-raised-button color="primary" (click)="weekSelected()">Ajouter</a>
+        </div>
+
+        <div class="col">
+          <mat-label>Semaines : </mat-label>
+          <div *ngIf="weeks != null">
+            <div *ngFor="let index of weeks">
+              <div class="row">
+                <div class="col">
+                  <p>S{{ index }}</p>
+                </div>
+                <div class="col">
+                  <mat-icon (click)="deleteWeek(index)">clear</mat-icon >
                 </div>
               </div>
-
-              <div class="col">
-                <h4>Choix des ingrédients : </h4>
-                <mat-form-field appearance="fill">
-                  <mat-label>ingredient</mat-label>
-                  <mat-select [(ngModel)]="ingredientsChoice">
-                    <mat-option *ngFor="let index of ingredients" [value]="index.label">
-                      {{index.label }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="addIngredientChoice()">Ajouter</button>
-              </div>
-
-              <div class="col">
-                <div *ngIf="ingredientChoiceList.length != 0">
-                  <mat-label>Ingredients : </mat-label>
-                  <div *ngFor="let index of ingredientChoiceList">
-                    <div class="row">
-                      <div class="col">
-                        <p>{{ index }}</p>
-                      </div>
-                      <div class="col">
-                        <mat-icon (click)="deleteIngredientChoice(index)">clear</mat-icon >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
-            <div class="row">
-              <div class="col">
-                <button mat-raised-button color="primary" type="submit">Valider</button>
-              </div>
-            </div>
-
-          </form>
+          </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <h4>Choix des ingrédients : </h4>
+          <mat-form-field appearance="fill">
+            <mat-label>ingredient</mat-label>
+            <mat-select [(value)]="ingredientsChoice">
+              <mat-option *ngFor="let index of ingredients" [value]="index">
+                {{index.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <a mat-raised-button color="primary" (click)="addIngredientChoice()">Ajouter</a>
+        </div>
+
+        <div class="col">
+          <mat-label>Ingredients : </mat-label>
+          <div *ngIf="ingredientChoiceList.length != 0 && ingredientChoiceList.length != null">
+            <div *ngFor="let index of ingredientChoiceList">
+              <div class="row">
+                <div class="col">
+                  <p>{{ index }}</p>
+                </div>
+                <div class="col">
+                  <mat-icon (click)="deleteIngredientChoice(index)">clear</mat-icon >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h4>Choix de la catégorie : </h4>
+          <mat-form-field appearance="fill">
+            <mat-label>categorie</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let index of getCategoryList()" [value]="index">
+                {{index}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button mat-raised-button color="primary" type="submit">Valider</button>
+        </div>
+        <div class="col" *ngIf="isEdition == true">
+          <a mat-raised-button color="info" (click)="cancelEdition()" >Annuler</a>
+        </div>
+      </div>
+
+    </form>
   </div>
 </div>
 
