@@ -23,7 +23,6 @@ import {MatSelectModule} from '@angular/material/select';
   imports: [
     CommonModule,
     MatExpansionModule,
-    CoreModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -32,6 +31,7 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     SharedModule,
     MatSelectModule,
+    CoreModule,
 
   ]
 })

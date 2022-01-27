@@ -30,7 +30,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(): void {
-    console.log(this.object$);
     this.setNewList();
   }
 
@@ -39,6 +38,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+
     this.list.next(this.getMealListForCategory(this.cat));
 
     this.list.subscribe((data) => {

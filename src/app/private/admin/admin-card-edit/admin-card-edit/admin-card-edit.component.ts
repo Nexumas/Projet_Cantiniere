@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 })
 export class AdminCardEditComponent implements OnInit {
 
-  meal: LtMeal[]; // pour les meals récupérés
+  meal: LtMeal[] = []; // pour les meals récupérés
   ingredients: LtIngredient[]; // pour les ingrédients récupérés
 
   weeks: number[] = []; // pour les semaines choisis
@@ -74,13 +74,13 @@ export class AdminCardEditComponent implements OnInit {
     if(meal.weeks !== null) {
       this.weeks = meal.weeks;
     }
+    this.cardEditForm.controls['label'].setValue(meal.label);
+    this.cardEditForm.controls['price'].setValue(meal.price);
+    this.cardEditForm.controls['category'].setValue(this.getCategoryName('cat' + meal.category));
     this.mealIdEdition = meal.id
     meal.ingredients.forEach(index => {
       this.ingredientChoiceList.push(index.label);
       this.ingredientListForm.push(index.id);
-      this.cardEditForm.controls['label'].setValue(meal.label);
-      this.cardEditForm.controls['price'].setValue(meal.price);
-      this.cardEditForm.controls['category'].setValue(this.getCategoryName('cat' + meal.category));
     });
     this.isEdition = true;
   }
@@ -176,9 +176,12 @@ export class AdminCardEditComponent implements OnInit {
         this.notif.onSuccess('Repas mis à jour !');
 
         this.mealService.clearList();
+
         this.mealService.getAllMeals().then(value => {
           value.subscribe(index => this.meal = index);
         });
+
+        this.cancelEdition();
 
       }
     } else {

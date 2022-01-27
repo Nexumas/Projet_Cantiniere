@@ -19,12 +19,13 @@ export class MealService {
 
   //récupère tous les repas et le retourne en Observable
   async getAllMeals(): Promise<BehaviorSubject<any>> {
-    await new Promise<void>(done => setTimeout(() => done(), 500));
-
+    await new Promise<void>(done => setTimeout(() => done(), 700));
     this.apiService.findAllMeal().subscribe(value => {
       this.addMealToList(value);
       this._ltMeal$.next(this.getMealList());
     })
+
+    this.meals = [];
     return this._ltMeal$;
   }
 

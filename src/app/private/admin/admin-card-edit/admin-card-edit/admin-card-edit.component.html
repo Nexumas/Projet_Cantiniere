@@ -1,5 +1,13 @@
 <div class="d-flex flex-row mt-5">
-  <div class="categories-list">
+
+  <div class="categories-list title-zone">
+
+      <div class="title">
+        <h1>Catégories</h1>
+      </div>
+
+    <br>
+
     <app-categories [cat]="1" [name]="getCategoryName('cat1')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
     <app-categories [cat]="2" [name]="getCategoryName('cat2')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
     <app-categories [cat]="7" [name]="getCategoryName('cat7')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
@@ -8,8 +16,18 @@
     <app-categories [cat]="9" [name]="getCategoryName('cat9')" [obj]="getMealList()" (delete)="deleteMeal($event)" (edit)="updateMeal($event)"></app-categories>
   </div>
 
-  <div class="d-flex  justify-content-center w-50">
+  <div class="d-flex  justify-content-center form-zone">
+
+
     <form class="input-form" [formGroup]="cardEditForm" (ngSubmit)="onSubmit()">
+
+
+      <div>
+        <div class=" title">
+          <h1>Edition</h1>
+        </div>
+      </div>
+      <br>
 
       <div class="row">
 

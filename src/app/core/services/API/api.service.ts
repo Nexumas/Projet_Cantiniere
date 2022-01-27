@@ -107,9 +107,9 @@ export class ApiService {
   }
 
   // Appel API pour ajouter un repas (meal)
-  addMeal(label: string, priceDF: number, availableForWeeks: number[], category: number, ingredients: number[]){
+  addMeal(label: string, priceDF: number, availableForWeeks: number[], category: number, ingredientsId: number[]){
     try{
-      const body = { label, priceDF, availableForWeeks, category, ingredients}
+      const body = { label, priceDF, availableForWeeks, category, ingredientsId}
       return this.http.request('PUT',this.API_URL + '/meal/add', {headers: this.createAuthorizationHeader(), body, responseType: 'json'})
         .subscribe(index => console.log(index));
     }catch (e){
@@ -117,9 +117,9 @@ export class ApiService {
     }
   }
 
-  updateMeal(id: number, label: string, priceDF: number, weeks: number[], category: number, ingredients: number[]){
+  updateMeal(id: number, label: string, priceDF: number, availableForWeeks: number[], category: number, ingredientsId: number[]){
     try{
-      const body = { label, priceDF, weeks, category, ingredients}
+      const body = { label, priceDF, availableForWeeks, category, ingredientsId}
       return this.http.request('PATCH',this.API_URL + '/meal/update/' + id, {headers: this.createAuthorizationHeader(), body, responseType: 'json'}).subscribe(
         index => console.log(index)
       );
