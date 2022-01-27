@@ -7,7 +7,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CategoriesComponent } from '../private/admin/admin-card-edit/categories-card-edit/categories.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {SharedModule} from '../shared/shared.module';
 
 
 
