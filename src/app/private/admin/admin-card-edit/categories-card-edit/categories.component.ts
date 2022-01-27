@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {LtMeal} from '../../models/meal/meal';
-import {AlertService} from '../../services/alert/alert.service';
+import {LtMeal} from '../../../../core/models/meal/meal';
+import {AlertService} from '../../../../core/services/alert/alert.service';
 
 @Component({
   selector: 'app-categories',
@@ -29,14 +29,6 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnChanges(): void {
-    this.setNewList();
-  }
-
-  setNewList(){
-      this.ngOnInit();
-  }
-
   ngOnInit(): void {
 
     this.list.next(this.getMealListForCategory(this.cat));
@@ -47,10 +39,21 @@ export class CategoriesComponent implements OnInit, OnChanges {
 
   }
 
+  ngOnChanges(): void {
+    this.setNewList();
+  }
+
+  //regénérer la liste à partir du OnChange
+  setNewList(){
+    this.ngOnInit();
+  }
+
+  //Donner le nom de la catégorie
   setName(name: string) {
     this.name = name;
   }
 
+  //Status affichage du contenu de la catégorie
   display() {
     if (this.selected == true) {
       this.selected = false;
@@ -59,10 +62,12 @@ export class CategoriesComponent implements OnInit, OnChanges {
     }
   }
 
+  //Status sélectionné
   selectedStatus(): boolean{
     return this.selected;
   }
 
+  //Génération de la liste des repas en liens avec une catégorie donné
   getMealListForCategory(number: number): LtMeal[] {
 
     let temp: LtMeal[] = [];
@@ -76,6 +81,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
     return temp;
   }
 
+  //Récupération et envoi au parent de l'id du meal à supprimer
   getValueToDelete(meal: LtMeal){
     if(confirm("Voulez-vous vraiment supprimer cet élément ? ")) {
       this.delete.emit(meal);
@@ -88,6 +94,7 @@ export class CategoriesComponent implements OnInit, OnChanges {
     }
   }
 
+  //récupération de l'id du repas à modifier et l'envoi au parent
   getValueToEdit(meal: LtMeal){
     if(confirm("Voulez-vous vraiment éditer cet élément ? ")) {
       this.edit.emit(meal);

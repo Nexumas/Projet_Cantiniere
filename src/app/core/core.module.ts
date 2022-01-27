@@ -4,9 +4,10 @@ import {LeftsidebarComponent} from './components/leftsidebar/leftsidebar.compone
 import {PublicRoutingModule} from '../public/public-routing.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoriesComponent } from '../private/admin/admin-card-edit/categories-card-edit/categories.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SharedModule} from '../shared/shared.module';
 
 
 

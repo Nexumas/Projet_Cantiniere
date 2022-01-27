@@ -117,6 +117,7 @@ export class ApiService {
     }
   }
 
+  //Appel API pour mettre à jour un repas
   updateMeal(id: number, label: string, priceDF: number, availableForWeeks: number[], category: number, ingredientsId: number[]){
     try{
       const body = { label, priceDF, availableForWeeks, category, ingredientsId}

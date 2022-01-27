@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, Inject, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {MealService} from '../../../../core/services/meal/meal.service';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -7,6 +7,7 @@ import {LtMeal} from '../../../../core/models/meal/meal';
 import {LtIngredient} from '../../../../core/models/ingredient/ingredient';
 import { AlertService } from 'src/app/core/services/alert/alert.service';
 import {Router} from '@angular/router';
+import {WeekTool} from '../../../../core/tools/weekTool';
 
 @Component({
   selector: 'app-admin-card-edit',
@@ -27,20 +28,25 @@ export class AdminCardEditComponent implements OnInit {
 
   cardEditForm: FormGroup;
 
-  mealIdEdition: number;
-  isEdition: boolean = false;
+  mealIdEdition: number; //id du meal à modifier
+  isEdition: boolean = false; //status mode modification
 
 
-  constructor(private router: Router, private mealService: MealService, private ingredientService: IngredientService, private notif: AlertService) {}
+  constructor(private router: Router, private mealService: MealService, private ingredientService: IngredientService,
+              private notif: AlertService, private weekTool: WeekTool) {}
+
+
 
   async ngOnInit(): Promise<void> {
 
+    //initialisation du formulaire
     this.cardEditForm = new FormGroup({
       label: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
 
+    //On récupère tous les ingrédients
     await this.ingredientService.findAllIngredient().subscribe(index => {
       this.ingredients = index;
     });
@@ -51,6 +57,82 @@ export class AdminCardEditComponent implements OnInit {
     });
 
   }
+
+
+
+
+  //DEBUT Gestion CRUD
+
+  //envoi du formulaire
+  onSubmit() {
+
+    if (this.cardEditForm.valid && this.weeks.length > 0) {
+
+      if (this.isEdition === false) {
+
+        //ajout d'un repas
+        this.mealService.addMeal(this.cardEditForm.value.label,
+          this.cardEditForm.value.price,
+          this.weeks,
+          this.mealService.getCategoryValue(this.cardEditForm.value.category),
+          this.ingredientListForm);
+
+        this.notif.onSuccess('Repas créé !');
+
+        this.mealService.clearList();
+
+        //mise à jour de la liste des repas actuelle
+        this.mealService.getAllMeals().then(value => {
+          value.subscribe(index => this.meal = index);
+        });
+
+      } else {
+
+        //mise à jour du repas
+        this.mealService.updateMeal(this.mealIdEdition,
+          this.cardEditForm.value.label,
+          this.cardEditForm.value.price,
+          this.weeks,
+          this.mealService.getCategoryValue(this.cardEditForm.value.category),
+          this.ingredientListForm);
+        this.notif.onSuccess('Repas mis à jour !');
+
+        this.mealService.clearList();
+
+        //mise à jour de la liste des repas actuelle
+        this.mealService.getAllMeals().then(value => {
+          value.subscribe(index => this.meal = index);
+        });
+
+        //on quitte le mode modification
+        this.cancelEdition();
+
+      }
+    } else {
+
+      this.notif.onError('Formulaire incorrect !');
+
+    }
+  }
+
+  //supprimer un repas
+  deleteMeal(meal){
+
+    this.mealService.deleteMeal(meal.id);
+    this.notif.onSuccess('Elément supprimé !');
+    this.mealService.clearList();
+    this.mealService.getAllMeals().then(value => {
+      value.subscribe(index => this.meal = index);
+    });
+
+  }
+
+  //FIN Gestion CRUD
+
+
+
+
+  //DEBUT Gestion des catégories
 
   //récupération du nom de la catégorie demandé
   getCategoryName(value: string): string {
@@ -66,10 +148,20 @@ export class AdminCardEditComponent implements OnInit {
     return temp;
   }
 
+  //récupération de la liste des catégories
   getCategoryList(): any[]{
     return this.mealService.getCategoryList();
   }
 
+  //FIN Gestion des catégories
+
+
+
+
+
+  //DEBUT Gestion mode modification
+
+  //passage en mode modification pour le formulaire
   updateMeal(meal){
     if(meal.weeks !== null) {
       this.weeks = meal.weeks;
@@ -85,6 +177,7 @@ export class AdminCardEditComponent implements OnInit {
     this.isEdition = true;
   }
 
+  //quitter le mode modification
   cancelEdition(){
     if(this.isEdition === true){
       this.isEdition = false;
@@ -97,26 +190,27 @@ export class AdminCardEditComponent implements OnInit {
     }
   }
 
-  getWeekNumber(d) {
-    let date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    let dayNum = date.getUTCDay() || 7;
-    date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-    let yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
-    // @ts-ignore
-    return Math.ceil((((date - yearStart) / 86400000) + 1)/7)
-  }
+  //FIN Gestion mode modification
 
+
+
+
+
+  //DEBUT Gestion des listes du formulaire
+
+  //ajout d'une semaine choisi dans la liste des semaines du formulaire
   weekSelected() {
     if(this.weeks.length == 0 || this.dateChoice.value != null) {
       let d = new Date();
       d.setFullYear(this.dateChoice.value.getYear(), this.dateChoice.value.getMonth(), this.dateChoice.value.getDate());
 
-      if(!this.weeks.includes(this.getWeekNumber(d))){
-        this.weeks.push(this.getWeekNumber(d));
+      if(!this.weeks.includes(this.weekTool.getWeekNumber(d))){
+        this.weeks.push(this.weekTool.getWeekNumber(d));
       }
     }
   }
 
+  //supprimer une semaine choisi de la liste des semaines pour le formulaire
   deleteWeek(value){
     this.weeks.forEach(index => {
       if(value == index){
@@ -125,6 +219,7 @@ export class AdminCardEditComponent implements OnInit {
     });
   }
 
+  //ajouter un ingrédient choisi dans la liste des ingrédients du formulaire
   addIngredientChoice(){
     if(this.ingredientChoiceList.length == 0 || this.ingredientsChoice != null){
       let label = this.ingredientsChoice.label;
@@ -139,6 +234,7 @@ export class AdminCardEditComponent implements OnInit {
     }
   }
 
+  //supprimer un ingrédient de la liste des ingrédients choisi dans le formulaire
   deleteIngredientChoice(value){
     this.ingredientChoiceList.forEach(index => {
       if(value === index){
@@ -148,57 +244,9 @@ export class AdminCardEditComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  //FIN Gestion des listes du formulaire
 
-    if (this.cardEditForm.valid && this.weeks.length > 0) {
 
-      if (this.isEdition === false) {
-        this.mealService.addMeal(this.cardEditForm.value.label,
-          this.cardEditForm.value.price,
-          this.weeks,
-          this.mealService.getCategoryValue(this.cardEditForm.value.category),
-          this.ingredientListForm);
 
-        this.notif.onSuccess('Repas créé !')
-        this.mealService.clearList();
-        this.mealService.getAllMeals().then(value => {
-          value.subscribe(index => this.meal = index);
-        });
 
-      } else {
-
-        this.mealService.updateMeal(this.mealIdEdition,
-          this.cardEditForm.value.label,
-          this.cardEditForm.value.price,
-          this.weeks,
-          this.mealService.getCategoryValue(this.cardEditForm.value.category),
-          this.ingredientListForm);
-        this.notif.onSuccess('Repas mis à jour !');
-
-        this.mealService.clearList();
-
-        this.mealService.getAllMeals().then(value => {
-          value.subscribe(index => this.meal = index);
-        });
-
-        this.cancelEdition();
-
-      }
-    } else {
-
-      this.notif.onError('Formulaire incorrect !');
-
-    }
-  }
-
-  deleteMeal(meal){
-
-    this.mealService.deleteMeal(meal.id);
-    this.notif.onSuccess('Elément supprimé !');
-    this.mealService.clearList();
-    this.mealService.getAllMeals().then(value => {
-      value.subscribe(index => this.meal = index);
-    });
-
-  }
 }
