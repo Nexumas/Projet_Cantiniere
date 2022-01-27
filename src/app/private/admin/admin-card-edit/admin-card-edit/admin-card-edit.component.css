@@ -1,0 +1,35 @@
+.categories-list {
+  margin-left: 15%;
+  width: 35%;
+}
+
+.form{
+  align-items: center;
+}
+
+.input-form {
+  align-items: center;
+}
+
+.form-zone{
+  margin-left: 10%;
+}
+
+.title-zone{
+  margin-left: 15%;
+}
+
+.title {
+  background: #9e3b3b;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+}
+
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}

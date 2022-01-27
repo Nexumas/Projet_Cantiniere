@@ -2,30 +2,61 @@
   <div class="bar">
 
     <div class="logo">
-      <mat-icon class="item-logo">dining</mat-icon>
-      <h2>cantinière</h2>
+      <mat-icon class="item-logo" matTooltip="CANTINIERE">dining</mat-icon>
+      <h2>cantinière </h2>
     </div>
 
     <ul>
+      <li *ngIf="auth.isConnected() | async as authenticated; else unauthenticated">
+        <div class="dropdown">
+          <mat-icon [routerLink]="['/private/account']" class="item-nav">account_circle</mat-icon>
+          <a class="nav-link" [routerLink]="['/private/account']">Profil</a>
+          <ul class="dropdown-content">
+            <li><mat-icon [routerLink]="['/private/account']" class="item-nav" matTooltip="Mon Profil">manage_accounts</mat-icon>
+            <a [routerLink]="['/private/account']">Mon Profil</a></li>
+            <li><mat-icon [routerLink]="['/private/account']" class="item-nav" (click)="auth.disconnect()" matTooltip="Déconnexion">logout</mat-icon>
+            <a href="#" (click)="auth.disconnect()">Déconnexion</a></li>
+          </ul>
+        </div>
+      </li>
+      <ng-template #unauthenticated>
+        <li>
+          <mat-icon [routerLink]="['public/auth/login']" class="item-nav" matTooltip="Login">login</mat-icon>
+          <a class="nav-link" [routerLink]="['public/auth/login']">Login</a>
+        </li>
+      </ng-template>
+      <li *ngIf="!(auth.isAdmin() | async)">
+        <div class="dropdown">
+          <mat-icon [routerLink]="['public/cart']" class="item-nav" matTooltip="Panier">shopping_cart</mat-icon>
+          <a class="nav-link" [routerLink]="['public/cart']">Panier</a>
+          <ul class="dropdown-content">
+          </ul>
+        </div>
+      </li>
+      <br>
       <li>
-        <mat-icon [routerLink]="['/']"  class="item-nav">lunch_dining</mat-icon>
+        <mat-icon [routerLink]="['/']"  class="item-nav" matTooltip="Plats de la semaine">lunch_dining</mat-icon>
         <a class="nav-link" [routerLink]="['/']"><div>Plats de la semaine</div></a>
       </li>
       <li>
-        <mat-icon [routerLink]="['public/carddishes']" class="item-nav">list_alt</mat-icon>
+        <mat-icon [routerLink]="['public/carddishes']" class="item-nav" matTooltip="Carte">list_alt</mat-icon>
         <a class="nav-link" [routerLink]="['public/carddishes']">Carte</a>
       </li>
-      <li *ngIf="(auth.isConnected() | async) as authenticated; else unauthenticated">
-        <mat-icon [routerLink]="" class="item-nav">account_circle</mat-icon>
-        <a class="nav-link" [routerLink]="">Profil</a>
+      <li *ngIf="auth.isAdmin() | async">
+        <mat-icon [routerLink]="['private/admin/card-edit']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
+        <a class="nav-link" [routerLink]="['private/admin/card-edit']">Edition Carte</a>
       </li>
-      <li #unauthenticated>
-        <mat-icon [routerLink]="['public/auth/login']" class="item-nav">login</mat-icon>
-        <a class="nav-link" [routerLink]="['public/auth/login']">Login</a>
+      <li *ngIf="auth.isAdmin() | async">
+          <mat-icon [routerLink]="['private/admin/usersaccount']" class="item-nav" matTooltip="Comptes Utilisateur">person_search</mat-icon>
+          <a class="nav-link" [routerLink]="['private/admin/usersaccount']">Comptes Utilisateur</a>
       </li>
-      <li>
-        <mat-icon [routerLink]="['public/cart']" class="item-nav">shopping_cart</mat-icon>
-        <a class="nav-link" [routerLink]="['public/cart']">Panier</a>
+      <li *ngIf="auth.isAdmin() | async">
+        <mat-icon [routerLink]="['']" class="item-nav" matTooltip="Recap des commandes">fact_check</mat-icon>
+        <a class="nav-link" [routerLink]="['']">Recap des commandes</a>
+      </li>
+      <li *ngIf="auth.isAdmin() | async">
+        <mat-icon [routerLink]="['']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
+        <a class="nav-link" [routerLink]="['']">Configuration</a>
       </li>
     </ul>
 

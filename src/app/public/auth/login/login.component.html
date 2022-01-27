@@ -1,10 +1,13 @@
 <div class="container">
-  <form [formGroup]="loginform" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div>
       <h1>Connexion</h1>
     </div>
     <div>
       <input type="text" formControlName="email" placeholder="E-mail" ngModel/>
+      <div class="errors" *ngIf="loginForm.controls.email?.hasError('required') && loginForm.controls.email?.dirty">
+        email requis !
+      </div>
     </div>
     <div>
       <input
@@ -12,6 +15,9 @@
         formControlName="password"
         placeholder="Mot de passe"
         ngModel />
+      <div class="errors" *ngIf="loginForm.controls.password?.hasError('required') && loginForm.controls.password?.dirty">
+        mot de passe requis !
+      </div>
     </div>
     <div>
       <input type="submit" value="Se connecter" />
@@ -26,6 +32,9 @@
     </div>
     <div>
       <button (click)="signup()" class="signup">Inscrivez-vous</button>
+    </div>
+    <div class="errors" style="text-align: center;" *ngIf="loginForm.invalid && submitted === true">
+      Formulaire invalide !
     </div>
   </form>
 </div>

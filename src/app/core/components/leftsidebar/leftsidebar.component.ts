@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/authentification/auth.service';
+import {Ltuser} from '../../models/User/ltuser';
+import {UsersService} from '../../services/users/users.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-leftsidebar',
@@ -8,11 +11,11 @@ import {AuthService} from '../../services/authentification/auth.service';
 })
 export class LeftsidebarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UsersService) { }
 
   auth: AuthService = this.authService;
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

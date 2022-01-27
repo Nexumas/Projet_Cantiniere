@@ -4,6 +4,8 @@ import {HomeComponent} from './home/home.component';
 import {CartComponent} from './cart/cart.component';
 import {CardDishesComponent} from './card-dishes/card-dishes.component';
 import {PagenotfoundComponent} from '../core/components/pagenotfound/pagenotfound.component';
+import {LogOnGuard} from '../core/guards/logon/log-on.guard';
+import {LogonDeactivateGuard} from '../core/guards/logon/logon-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +15,10 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [
+      LogonDeactivateGuard
+    ]
   },
   {
     path: 'home',

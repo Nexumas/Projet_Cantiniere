@@ -1,1 +1,51 @@
-<p>admin-user-account works!</p>
+<div class="contentSearchUser">
+    <h1>Rechercher un compte utilisateur</h1>
+    <div class="search">
+        <mat-form-field class="example-full-width inputUserName" appearance="fill">
+          <mat-label>Nom de l'utilisateur</mat-label>
+          <input matInput (input)="filterName($event.target.value)" placeholder="Ex. Smith">
+        </mat-form-field>
+      <button mat-raised-button (click)="filterName(inputName)" class="btnSearch">Recherche</button>
+    </div>
+
+<div class="mat-elevation-z8 userBoard">
+  <table mat-table [dataSource]="userMatTable" matSort>
+    <ng-container matColumnDef="name" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Nom </th>
+      <td mat-cell *matCellDef="let userMatTable"> {{userMatTable.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell *matHeaderCellDef class="col-2" mat-sort-header> Prénom </th>
+      <td mat-cell *matCellDef="let userMatTable"> {{userMatTable.firstname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="col-4" mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let userMatTable"> {{userMatTable.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wallet">
+      <th mat-header-cell *matHeaderCellDef class="col-2" mat-sort-header> Solde </th>
+      <td mat-cell *matCellDef="let userMatTable"> {{userMatTable.wallet}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="seemore">
+      <th mat-header-cell *matHeaderCellDef class="col-2 text-center"> Voir plus </th>
+      <td mat-cell *matCellDef="let userMatTable" class="text-center" > <a routerLink="/user/user-account/{{userMatTable.id}}">Voir plus</a> </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+
+  </table>
+  <mat-paginator [length]="userMatTable.filteredData.length"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 20, 30, 100]">
+  </mat-paginator>
+
+
+  </div>
+</div>
+
+
+
