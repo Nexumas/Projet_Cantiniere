@@ -1,0 +1,9 @@
+.rt-table{
+    background-color: #C4C4C3;
+    width: 100%;
+}
+
+.rt-table td, .rt-table th{
+    padding: 5px;
+    border: 1px solid #AEA6A8;
+}

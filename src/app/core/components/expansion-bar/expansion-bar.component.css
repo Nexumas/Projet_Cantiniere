@@ -1,0 +1,22 @@
+.eb-button-wrapper{
+    width: 100%;
+}
+
+.eb-button{
+    background-color: #9e3b3b;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    outline: none;
+}
+
+.eb-content{
+    overflow: hidden;
+    display: none;
+    padding: 10px;
+}
+
+.eb-content.active{
+    display: block;
+}

@@ -1,0 +1,6 @@
+<div class="eb-button-wrapper">
+    <button class="eb-button" (click)="active=!active">{{title}}</button>
+    <div class="eb-content" [class.active]="active">
+        <ng-content></ng-content>
+    </div>
+</div>

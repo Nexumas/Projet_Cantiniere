@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {AdminCardEditModule} from './admin-card-edit/admin-card-edit.module';
+import {AdminWeekDishesModule} from './admin-week-dishes/admin-week-dishes.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {AdminCardEditModule} from './admin-card-edit/admin-card-edit.module';
     CommonModule,
     AdminRoutingModule,
     AdminUserAccountModule,
-    AdminCardEditModule
+    AdminCardEditModule,
+    AdminWeekDishesModule
   ]
 })
 export class AdminModule { }

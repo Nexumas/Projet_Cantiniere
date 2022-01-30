@@ -51,8 +51,8 @@
           <a class="nav-link" [routerLink]="['private/admin/usersaccount']">Comptes Utilisateur</a>
       </li>
       <li *ngIf="auth.isAdmin() | async">
-        <mat-icon [routerLink]="['']" class="item-nav" matTooltip="Recap des commandes">fact_check</mat-icon>
-        <a class="nav-link" [routerLink]="['']">Recap des commandes</a>
+        <mat-icon [routerLink]="['private/admin/weekdishes']" class="item-nav" matTooltip="Recap des commandes">fact_check</mat-icon>
+        <a class="nav-link" [routerLink]="['private/admin/weekdishes']">Recap des commandes</a>
       </li>
       <li *ngIf="auth.isAdmin() | async">
         <mat-icon [routerLink]="['']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
