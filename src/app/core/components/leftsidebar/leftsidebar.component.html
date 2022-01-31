@@ -55,8 +55,8 @@
         <a class="nav-link" [routerLink]="['']">Recap des commandes</a>
       </li>
       <li *ngIf="auth.isAdmin() | async">
-        <mat-icon [routerLink]="['']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
-        <a class="nav-link" [routerLink]="['']">Configuration</a>
+        <mat-icon [routerLink]="['private/admin/config']" class="item-nav" matTooltip="Configuration">settings</mat-icon>
+        <a class="nav-link" [routerLink]="['private/admin/config']">Configuration</a>
       </li>
     </ul>
 

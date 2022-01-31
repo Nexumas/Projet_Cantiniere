@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {LtMeal} from '../../models/meal/meal';
 import {LtIngredient} from '../../models/ingredient/ingredient';
+import {LtConstraint} from '../../models/constraint/constraint';
 
 @Injectable({
   providedIn: 'root'
@@ -126,6 +127,30 @@ export class ApiService {
       );
     }catch (e){
       console.error('Echec lors de updateMeal');
+    }
+  }
+
+  //appel API pour récupérer toutes les contraintes
+  findAllConstraint(){
+    try{
+      return this.http.request('GET',this.API_URL + '/constraint/findall/', {headers: this.createAuthorizationHeader(), responseType: 'json'})
+        .pipe(
+          map((ingredients: LtConstraint[]) => ingredients)
+        );
+    }catch (e){
+      console.error('Échec lors de findAllConstraint');
+    }
+  }
+
+  //appel API pour mettre à jour une contrainte
+  updateConstraint(id: number, orderTimeLimit: string, maximumOrderPerDay: number){
+    try{
+      const body = { orderTimeLimit, maximumOrderPerDay, rateVAT: 20 }
+      return this.http.request('PATCH',this.API_URL + '/constraint/update/' + id, {headers: this.createAuthorizationHeader(), body, responseType: 'json'}).subscribe(
+        index => console.log(index)
+      );
+    }catch (e){
+      console.error('Échec lors de updateConstraint');
     }
   }
 
