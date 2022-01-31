@@ -53,6 +53,16 @@ mat-form-field mat-label{
   background-color: #9e3b3b;
 }
 
+.mat-spinner::ng-deep circle {
+  stroke: #9e3b3b;
+}
+
+.loading{
+  margin-top: 5%;
+  margin-left: 40%;
+  margin-bottom: 5%;
+}
+
 
 @media (max-width: 900px) {
   .contentSearchUser {

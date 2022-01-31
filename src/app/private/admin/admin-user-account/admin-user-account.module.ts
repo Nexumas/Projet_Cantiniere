@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -17,15 +18,16 @@ import {MatSortModule} from '@angular/material/sort';
   declarations: [
     AdminUserAccountComponent
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    RouterModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        RouterModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule
+    ]
 })
 export class AdminUserAccountModule { }

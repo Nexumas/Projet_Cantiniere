@@ -46,6 +46,8 @@ export class AdminMenuComponent implements OnInit {
         this.config.updateConstraint(this.currentConfig.id, timeValue, this.configForm.controls['limit'].value);
 
         this.notif.onSuccess('Configuration Mise à jour !');
+        this.notif.onInfo('Le nombre limite de commande est passé à ' + this.configForm.controls['limit'].value + ' plats.');
+        this.notif.onInfo('Heure limite de commande est passé à ' + this.configForm.controls['time'].value + '.');
       }
     }
   }
