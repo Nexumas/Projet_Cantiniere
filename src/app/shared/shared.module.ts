@@ -10,6 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class SharedModule { }

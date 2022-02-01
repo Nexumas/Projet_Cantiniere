@@ -12,6 +12,7 @@ import {CoreModule} from './core/core.module';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {SharedModule} from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     SharedModule,
     SimpleNotificationsModule.forRoot(),
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot([]),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,33 @@
-<form formGroup="">
-  <input type="text" >
-</form>
+<div class="config-menu">
+  <div>
+    <div class=" title">
+      <h1>Configuration</h1>
+    </div>
+  </div>
+  <div *ngIf="loadingStatus === false">
+    <mat-spinner class="loading"></mat-spinner>
+  </div>
+  <div *ngIf="loadingStatus === true">
+    <div class="menu-content">
+      <form [formGroup]="configForm" (ngSubmit)="onSubmit()" class="form-horizontal">
 
-<app-days-categories></app-days-categories>
+        <mat-form-field class="menu-input" appearance="fill">
+          <mat-label>Nombres de plats</mat-label>
+          <input matInput type="number" formControlName="limit">
+        </mat-form-field>
+
+        <mat-form-field class="menu-input" appearance="fill">
+          <mat-label>Horaire limite</mat-label>
+          <input matInput [ngxTimepicker]="fullTime" [format]="24" formControlName="time" readonly>
+          <ngx-material-timepicker class="timepicker" #fullTime ></ngx-material-timepicker>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col menu-button">
+            <button mat-raised-button type="submit" >Valider</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

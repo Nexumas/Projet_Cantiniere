@@ -4,8 +4,13 @@ import {AdminWeekDishesComponent} from './admin-week-dishes/admin-week-dishes/ad
 import {AdminUserAccountComponent} from './admin-user-account/admin-user-account/admin-user-account.component';
 import {AdminOrderSummaryComponent} from './admin-order-summary/admin-order-summary/admin-order-summary.component';
 import {AdminCardEditComponent} from './admin-card-edit/admin-card-edit/admin-card-edit.component';
+import {AdminMenuComponent} from './admin-menu/admin-menu/admin-menu.component';
 
 const routes: Routes = [
+  {
+    path: 'config',
+    component: AdminMenuComponent
+  },
   {
     path: 'weekdishes',
     component: AdminWeekDishesComponent

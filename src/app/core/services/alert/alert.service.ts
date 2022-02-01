@@ -34,4 +34,11 @@ export class AlertService {
       clickToClose: true
     })
   }
+
+  onInfo(message: string){
+    this.notif.info('Information', message, {
+      clickToClose: true
+    });
+  }
+
 }
