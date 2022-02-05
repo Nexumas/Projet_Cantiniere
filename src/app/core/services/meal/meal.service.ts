@@ -28,6 +28,14 @@ export class MealService {
     return this._ltMeal$;
   }
 
+  getAllMealsForThisWeek(): BehaviorSubject<any> {
+    this.apiService.mealsForThisWeek().subscribe(value => {
+      this.addMealToList(value);
+      this._ltMeal$.next(this.getMealList());
+    })
+    return this._ltMeal$;
+  }
+
   //ajouter un ou plusieurs tableaux de LtMeal à une liste
   addMealToList(data){
     let meal: LtMeal;

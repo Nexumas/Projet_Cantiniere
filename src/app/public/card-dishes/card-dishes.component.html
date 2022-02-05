@@ -1,30 +1,10 @@
-<div class="row mt-4">
-  <div class="col-2 offset-3">
-    <label><b>Boissons chaudes</b></label>
-  </div>
-  <div class="col-2 offset-2">
-    <label><b>Boissons froides</b></label>
-  </div>
+<div class="categories-list">
+  <app-card-categories [name]="getCategoryName('cat1')" [obj]="getMealListForCategory(1)" ></app-card-categories>
+  <app-card-categories [name]="getCategoryName('cat2')" [obj]="getMealListForCategory(2)" ></app-card-categories>
+  <app-card-categories [name]="getCategoryName('cat7')" [obj]="getMealListForCategory(7)" ></app-card-categories>
+  <app-card-categories [name]="getCategoryName('cat3')" [obj]="getMealListForCategory(3)" ></app-card-categories>
+  <app-card-categories [name]="getCategoryName('cat5')" [obj]="getMealListForCategory(5)" ></app-card-categories>
+  <app-card-categories [name]="getCategoryName('cat9')" [obj]="getMealListForCategory(9)" ></app-card-categories>
 </div>
-<div class="row mt-4">
-  <div class="col-2 offset-3">
-    <label><b>Viennoiseries</b></label>
-  </div>
-  <div class="col-2 offset-2">
-    <label><b>Deserts</b></label>
-  </div>
-</div>
-<div class="row mt-4">
-  <div class="col-2 offset-3">
-    <label><b>Sandwiches</b></label>
-  </div>
-  <div class="col-2 offset-2">
-    <label><b>Petites faims</b></label>
-  </div>
-</div>
-<div class="row mt-4">
-  <div class="col-2 offset-3">
-    <label><b>Formule midi</b></label>
-  </div>
-</div>
+
 

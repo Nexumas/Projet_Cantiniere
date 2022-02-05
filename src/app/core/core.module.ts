@@ -7,17 +7,20 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CategoriesComponent } from './components/categories/categories.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CardCategoriesComponent } from './components/card-categories/card-categories.component';
 
 
 
 @NgModule({
     declarations: [
         LeftsidebarComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        CardCategoriesComponent
     ],
     exports: [
         LeftsidebarComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        CardCategoriesComponent
     ],
   imports: [
     CommonModule,
