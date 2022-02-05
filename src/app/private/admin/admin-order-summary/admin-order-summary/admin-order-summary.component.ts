@@ -13,6 +13,8 @@ export class AdminOrderSummaryComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+//retrieve and test on console if the api return the meal
+
   ngOnInit(): void {
     this.mealList = this.apiService.mealsForThisWeek2();
     this.mealList.subscribe(resp=>console.log(resp));

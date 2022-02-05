@@ -1,4 +1,5 @@
 <div class="eb-button-wrapper">
+    <!--active=!active for create condition true/false with component if the idden is activate or not-->
     <button class="eb-button" (click)="active=!active">{{title}}</button>
     <div class="eb-content" [class.active]="active">
         <ng-content></ng-content>
