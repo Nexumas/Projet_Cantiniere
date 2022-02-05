@@ -15,8 +15,13 @@ export class CardDishesComponent implements OnInit {
 
   constructor(private mealService: MealService) { }
 
-  ngOnInit(): void {
-    this.mealService.getAllMealsForThisWeek().subscribe(value => this.meal = value);
+  async ngOnInit(): Promise<void> {
+    await this.mealService.getAllMealsForThisWeek().then(value => {
+      value.subscribe(index => {
+        console.log(index);
+        this.meal = index;
+      })
+    });
   }
 
   //On créé une liste de repas en fonction de la catégorie demandé

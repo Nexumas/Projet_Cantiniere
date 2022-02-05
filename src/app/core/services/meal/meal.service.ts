@@ -29,11 +29,13 @@ export class MealService {
     return this._ltMeal$;
   }
 
-  getAllMealsForThisWeek(): BehaviorSubject<any> {
+  async getAllMealsForThisWeek(): Promise<BehaviorSubject<LtMeal[]>> {
+    await new Promise<void>(done => setTimeout(() => done(), 700));
     this.apiService.mealsForThisWeek().subscribe(value => {
       this.addMealToList(value);
       this._ltMeal$.next(this.getMealList());
-    })
+    });
+    this.meals = [];
     return this._ltMeal$;
   }
 
