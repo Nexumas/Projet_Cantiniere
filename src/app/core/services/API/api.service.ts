@@ -60,6 +60,16 @@ export class ApiService {
     }
   }
 
+  mealsForThisWeek2(): Observable<any[]>{
+    try{
+      return this.http.get<any[]>(this.API_URL + '/meal/findallavailablefortoday', {headers: this.createAuthorizationHeader()})
+        .pipe(
+          map((meals:LtMeal[])=>meals));
+    }catch (e){
+      throw new Error('Echec de la recuperation des infos !');
+    }
+  }
+
   // Appel API pour MDP oublié
   forgotpassword(email : string): Observable<HttpResponse<object>>{
     try{

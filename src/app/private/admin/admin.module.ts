@@ -9,7 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {AdminCardEditModule} from './admin-card-edit/admin-card-edit.module';
-import {AdminWeekDishesModule} from './admin-week-dishes/admin-week-dishes.module';
+import {AdminOrderSummaryModule} from './admin-order-summary/admin-order-summary.module';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import {AdminWeekDishesModule} from './admin-week-dishes/admin-week-dishes.modul
     AdminRoutingModule,
     AdminUserAccountModule,
     AdminCardEditModule,
-    AdminWeekDishesModule
+    AdminOrderSummaryModule
   ]
 })
 export class AdminModule { }
