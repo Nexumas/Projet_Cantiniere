@@ -16,7 +16,7 @@ export class AuthService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private _isAdmin$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private apiService: ApiService, private notif: AlertService, private router: Router, private user: UsersService) {
+  constructor(private apiService: ApiService) {
     //maintien de la connexion si token existe
     const token = sessionStorage.getItem('token_api');
     this._isLoggedIn$.next(!!token);
@@ -45,7 +45,6 @@ export class AuthService {
       this._isLoggedIn$.next(true);
       // On stock le token dans le cache du navigateur
       sessionStorage.setItem('token_api', data.headers.get('Authorization'));
-
       this.decryptJWT(data.headers.get('Authorization'));
     });
   }
@@ -81,7 +80,7 @@ export class AuthService {
       await new Promise<void>(done => setTimeout(() => done(), 5000));
       this.login(email, password);
     } catch (e) {
-      throw new Error('Erreur inscription');
+      console.error('Echec lors de register');
     }
   }
 }

@@ -18,6 +18,8 @@ export class AdminUserAccountComponent implements OnInit {
   columnsToDisplay = ['name', 'firstname', 'email', 'wallet' , 'seemore'];
   inputName: string = '';
 
+  loadingStatus = true;
+
   @ViewChild(MatPaginator, {static: true}) paginatorte: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -34,7 +36,7 @@ export class AdminUserAccountComponent implements OnInit {
 
     this.userMatTable.paginator = this.paginatorte;
 
-
+    this.loadingStatus = false;
   }
   filterName(inputName: string): void{
     this.inputName = inputName;

@@ -11,6 +11,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,15 +24,15 @@ import {MatSelectModule} from '@angular/material/select';
   imports: [
     CommonModule,
     MatExpansionModule,
-    CoreModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
     MatSelectModule,
+    CoreModule,
+    MatIconModule,
 
   ]
 })

@@ -9,6 +9,10 @@
     </div>
 
 <div class="mat-elevation-z8 userBoard">
+  <div *ngIf="loadingStatus === true">
+    <mat-spinner class="loading"></mat-spinner>
+  </div>
+  <div *ngIf="loadingStatus === false">
   <table mat-table [dataSource]="userMatTable" matSort>
     <ng-container matColumnDef="name" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-2"> Nom </th>
@@ -38,6 +42,7 @@
 
 
   </table>
+    </div>
   <mat-paginator [length]="userMatTable.filteredData.length"
                  [pageSize]="10"
                  [pageSizeOptions]="[10, 20, 30, 100]">
