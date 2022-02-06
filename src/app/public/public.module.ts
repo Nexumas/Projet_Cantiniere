@@ -6,6 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import {AuthModule} from './auth/auth.module';
 import { CardDishesComponent } from './card-dishes/card-dishes.component';
+import {CoreModule} from '../core/core.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -14,11 +18,13 @@ import { CardDishesComponent } from './card-dishes/card-dishes.component';
     CartComponent,
     CardDishesComponent,
   ],
-  imports: [
-    CommonModule,
-    PublicRoutingModule,
-    AuthModule
-  ],
+    imports: [
+        CommonModule,
+        PublicRoutingModule,
+        AuthModule,
+        CoreModule,
+        FormsModule
+    ],
   exports: [
     HomeComponent,
     CartComponent,

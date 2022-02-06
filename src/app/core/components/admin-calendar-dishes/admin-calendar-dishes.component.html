@@ -1,0 +1,43 @@
+<div class="card-day">
+
+  <form (ngSubmit)="addMealsForWeek(Form)" #Form="ngForm">
+    <div class="card-plat">
+      <h1>{{days}}</h1>
+      <div class="card-list">
+        <div class="list-plat">
+          <div class="plat">
+            <h2>Plat 1</h2>
+            <ul>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <select name="browser_p1_{{days}}" [(ngModel)]="choice">
+                  <option *ngFor="let meal of MealsWeeks[0]" [value]="meal">{{meal.label}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="plat">
+            <h2>Plat 2</h2>
+            <ul>
+              <li></li>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <select name="browser_p2_{{days}}" [(ngModel)]="choice">
+                  <option *ngFor="let meal of MealsWeeks[0]" [value]="meal">{{meal.label}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="footer-form">
+        <button class="button">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -34,4 +34,13 @@ export class AlertService {
       clickToClose: true
     })
   }
+
+  onInfo(message: string){
+    this.notif.info('Attention', message, {
+      timeOut: 5000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true
+    })
+  }
 }

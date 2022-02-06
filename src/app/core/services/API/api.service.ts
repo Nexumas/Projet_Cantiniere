@@ -50,4 +50,12 @@ export class ApiService {
     }
   }
 
+  findAllMealInWeek(): Promise<any[]> {
+    try{
+      return this.http.get<any[]>(this.API_URL + '/meal/findallavailablefortoday', {headers: this.createAuthorizationHeader()}).toPromise();
+    }catch (e){
+      throw new Error('Echec de la récupération des Meals de la semaine!');
+    }
+  }
+
 }

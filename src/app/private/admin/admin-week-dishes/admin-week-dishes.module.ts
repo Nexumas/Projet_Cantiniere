@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AdminWeekDishesRoutingModule } from './admin-week-dishes-routing.module';
 import { AdminWeekDishesComponent } from './admin-week-dishes/admin-week-dishes.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
   declarations: [
-    AdminWeekDishesComponent
+    AdminWeekDishesComponent,
   ],
   imports: [
     CommonModule,
-    AdminWeekDishesRoutingModule
+    CoreModule
   ]
 })
 export class AdminWeekDishesModule { }
