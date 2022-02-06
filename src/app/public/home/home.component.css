@@ -1,7 +1,21 @@
-.days-list{
+.container{
+  height: 97vh;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   flex-direction: column;
-  margin-left: 210px;
+  justify-content: center;
+}
+
+.days-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+app-calendar-dishes{
+  margin: 5px;
+}
+
+@media screen and (max-width: 900px) {
+
 }

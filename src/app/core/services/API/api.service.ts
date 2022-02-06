@@ -13,6 +13,7 @@ export class ApiService {
 
   // url par défaut de l'API
   private API_URL = 'http://localhost:8080/lunchtime';
+  private _quantiy: number;
 
   constructor(private http: HttpClient) { }
 
@@ -156,6 +157,39 @@ export class ApiService {
       );
     }catch (e){
       console.error('Échec lors de updateConstraint');
+    }
+  }
+
+  addOrder(userId: string, quantiy: number, type: number){
+    this._quantiy = quantiy;
+    let Meal = 0;
+    let menu = 0;
+    if (type === 1){
+      let mealId = Math.floor(Math.random() * 40);
+    }else if(type === 2){
+      let menuId = Math.floor(Math.random() * 60);
+    }
+
+    try{
+      const body = {
+
+        userId: userId,
+        constraintId: 1,
+        quantity: [
+          {
+            quantity: this._quantiy,
+            mealId: Meal,
+            menuId: menu
+          }
+        ]
+
+      }
+      return this.http.request('PUT',this.API_URL + '/order/add', {headers: this.createAuthorizationHeader(), body, responseType: 'json'}).subscribe(
+        index => console.table(index),
+        err => console.table(err)
+      );
+    }catch (e){
+      console.error('Échec lors de la commande');
     }
   }
 

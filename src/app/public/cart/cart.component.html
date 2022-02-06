@@ -20,12 +20,13 @@
         <button (click)="this.dish.remove(item)" class="text-danger : red">X</button>
       </div>
     </div>
-  </div>
-  <div class="row mt-5" style="background-color: rgb(255, 255, 255);">
-    <div class="col-2 offset-5">
-      <input type="submit" class="btn btn-danger"  style="background-color:gray; border-color: transparent;" value="Commander"/>
+    <div class="row mt-5" style="background-color: rgb(255, 255, 255);">
+      <div class="col-2 offset-5">
+        <input type="submit" class="btn btn-danger"  style="background-color:gray; border-color: transparent;" (click)="commander(item)" value="Commander"/>
+      </div>
     </div>
   </div>
+
 </div>
 
 

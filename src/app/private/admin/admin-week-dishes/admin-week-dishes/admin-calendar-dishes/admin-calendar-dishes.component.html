@@ -1,1 +1,42 @@
-<p>admin-calendar-dishes works!</p>
+<div class="card-day">
+  <form (ngSubmit)="onSubmit()" [formGroup]="fg">
+    <div class="card-plat">
+      <h1>{{days}}</h1>
+      <div class="card-list">
+        <div class="list-plat">
+          <div class="plat">
+            <h2>Plat 1</h2>
+            <ul>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <select formControlName="browser_p1">
+                  <option *ngFor="let meal of meal" [value]="meal.label">{{meal.label}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="plat">
+            <h2>Plat 2</h2>
+            <ul>
+              <li></li>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <select formControlName="browser_p2">
+                  <option *ngFor="let meal of meal" [value]="meal.label">{{meal.label}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="footer-form">
+        <button class="button" type="submit">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import {AdminUserAccountModule} from './admin-user-account/admin-user-account.module';
 import {AdminCardEditModule} from './admin-card-edit/admin-card-edit.module';
 import {AdminMenuModule} from './admin-menu/admin-menu.module';
+import {AdminWeekDishesModule} from "./admin-week-dishes/admin-week-dishes.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {AdminMenuModule} from './admin-menu/admin-menu.module';
     AdminRoutingModule,
     AdminUserAccountModule,
     AdminCardEditModule,
-    AdminMenuModule
+    AdminMenuModule,
+    AdminWeekDishesModule
   ]
 })
 export class AdminModule { }

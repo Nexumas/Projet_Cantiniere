@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminWeekDishesComponent } from './admin-week-dishes/admin-week-dishes.component';
 import { AdminCalendarDishesComponent } from './admin-week-dishes/admin-calendar-dishes/admin-calendar-dishes.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -12,6 +13,8 @@ import { AdminCalendarDishesComponent } from './admin-week-dishes/admin-calendar
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminWeekDishesModule { }

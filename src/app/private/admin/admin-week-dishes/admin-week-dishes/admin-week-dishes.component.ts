@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../../../core/services/API/api.service";
 import {MealService} from "../../../../core/services/meal/meal.service";
+import {LtMeal} from "../../../../core/models/meal/meal";
 
 @Component({
   selector: 'app-admin-week-dishes',
@@ -9,13 +10,23 @@ import {MealService} from "../../../../core/services/meal/meal.service";
 })
 export class AdminWeekDishesComponent implements OnInit {
 
-  constructor(private api: ApiService, private meal: MealService) { }
+  constructor(private meal: MealService) { }
 
-  ngOnInit(): void {
+  Meal: LtMeal[] = [];
+
+  async ngOnInit(): Promise<void> {
+    await this.meal.getAllMealsForThisWeek().then(value => {
+      value.subscribe(index => {
+
+        this.Meal = index;
+      })
+    });
   }
 
-  getMeals(){
-    return this.meal.getMealsForWeek();
+  getMeals(): LtMeal[] {
+
+    return this.Meal;
+
   }
 
 }

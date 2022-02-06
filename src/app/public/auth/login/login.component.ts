@@ -38,7 +38,7 @@ forgotpassword(): void {
       this.authService.isConnected().subscribe((status) => {
         if (status) {
           //redirection
-          this.router.navigate(['/']);
+          this.router.navigate(['/private/admin/weekdishes']);
           //notification utilisateur
           this.notif.onSuccess('Connexion réussi !');
         }

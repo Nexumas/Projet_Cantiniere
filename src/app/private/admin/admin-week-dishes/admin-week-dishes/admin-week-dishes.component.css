@@ -1,0 +1,17 @@
+.container{
+  height: 97vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.group-calendar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+app-admin-calendar-dishes{
+  margin: 5px;
+}
