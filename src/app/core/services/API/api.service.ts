@@ -24,7 +24,8 @@ export class ApiService {
   login(email: string, password: string): Observable<HttpResponse<object>> {
     try {
       const body = {email, password};
-      return this.http.request('POST', this.API_URL + '/login', {body, responseType: 'json', observe: 'response'});
+      return this.http.request('POST', this.API_URL + '/login',
+        {body, responseType: 'json', observe: 'response'});
     }catch (e) {
       console.error('Echec lors de login');
     }
@@ -33,7 +34,8 @@ export class ApiService {
   // Appel API pour inscription
   register(email: string, password: string, username: string, firstName: string, sex: number): Observable<HttpResponse<object>>{
     try{
-      const body = { email, password, username, firstName, sex, isLunchLady: false, image: { imagePath: null, image64: null }, wallet: 0.0, town: null, phone: null, postalCode: null, address: null};
+      const body = { email, password, username, firstName, sex, isLunchLady: false, image: { imagePath: null, image64: null },
+        wallet: 0.0, town: null, phone: null, postalCode: null, address: null};
       return this.http.request('PUT', this.API_URL + '/user/register', {body, responseType: 'json', observe: 'response'});
     }catch (e){
       console.error('Echec lors de register');
