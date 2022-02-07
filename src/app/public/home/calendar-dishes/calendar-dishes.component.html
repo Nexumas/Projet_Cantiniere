@@ -1,0 +1,52 @@
+<div class="card-day">
+
+  <form (ngSubmit)="addCart(Form)" #Form="ngForm">
+    <div class="card-plat">
+      <h1>{{day}}</h1>
+      <div class="card-list">
+        <div class="list-plat">
+          <div class="plat">
+            <h2>Plat 1</h2>
+            <ul>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <input type="radio" id="plat1" name="plat_{{day}}" value="Plat1_s_{{day}}" [(ngModel)]="choice" required>
+                <label for="plat1">Seul</label>
+              </div>
+              <div class="form-item">
+                <input type="radio" name="plat_{{day}}" value="Plat1_f_{{day}}" [(ngModel)]="choice" required>
+                <label for="plat1">Formule</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="plat">
+            <h2>Plat 2</h2>
+            <ul>
+              <li></li>
+            </ul>
+            <div class="form">
+              <div class="form-item">
+                <input type="radio" id="plat2" name="plat_{{day}}" value="Plat2_s_{{day}}" [(ngModel)]="choice" required>
+                <label for="plat2">Seul</label>
+              </div>
+              <div class="form-item">
+                <input type="radio" name="plat_{{day}}" value="Plat2_f_{{day}}" [(ngModel)]="choice" required>
+                <label for="plat2">Formule</label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="footer-form">
+        <button class="button" *ngIf="indays() !== 0 else disable">Ajouter panier</button>
+        <ng-template #disable>
+          <button class="button" disabled>Ajouter panier</button>
+        </ng-template>
+      </div>
+    </div>
+  </form>
+</div>

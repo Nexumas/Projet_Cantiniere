@@ -13,6 +13,7 @@ export class ApiService {
 
   // url par défaut de l'API
   private API_URL = 'http://localhost:8080/lunchtime';
+  private _quantiy: number;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,8 @@ export class ApiService {
   login(email: string, password: string): Observable<HttpResponse<object>> {
     try {
       const body = {email, password};
-      return this.http.request('POST', this.API_URL + '/login', {body, responseType: 'json', observe: 'response'});
+      return this.http.request('POST', this.API_URL + '/login',
+        {body, responseType: 'json', observe: 'response'});
     }catch (e) {
       console.error('Echec lors de login');
     }
@@ -33,7 +35,8 @@ export class ApiService {
   // Appel API pour inscription
   register(email: string, password: string, username: string, firstName: string, sex: number): Observable<HttpResponse<object>>{
     try{
-      const body = { email, password, username, firstName, sex, isLunchLady: false, image: { imagePath: null, image64: null }, wallet: 0.0, town: null, phone: null, postalCode: null, address: null};
+      const body = { email, password, username, firstName, sex, isLunchLady: false, image: { imagePath: null, image64: null },
+        wallet: 0.0, town: null, phone: null, postalCode: null, address: null};
       return this.http.request('PUT', this.API_URL + '/user/register', {body, responseType: 'json', observe: 'response'});
     }catch (e){
       console.error('Echec lors de register');
@@ -54,9 +57,12 @@ export class ApiService {
   }
 
   // Appel API pour cartes
-  mealsForThisWeek(): Observable<HttpResponse<object>>{
+  mealsForThisWeek(): Observable<LtIngredient[]>{
     try{
-      return this.http.request('GET', this.API_URL + '/meal/findallavailablefortoday', {responseType: 'json', observe: 'response'});
+      return this.http.get<any[]>(this.API_URL + '/meal/findallavailablefortoday')
+        .pipe(
+          map((ingredients: LtIngredient[]) => ingredients)
+        );
     }catch (e){
       throw new Error('Echec de la recuperation des infos !');
     }
@@ -151,6 +157,39 @@ export class ApiService {
       );
     }catch (e){
       console.error('Échec lors de updateConstraint');
+    }
+  }
+
+  addOrder(userId: string, quantiy: number, type: number){
+    this._quantiy = quantiy;
+    let Meal = 0;
+    let menu = 0;
+    if (type === 1){
+      let mealId = Math.floor(Math.random() * 40);
+    }else if(type === 2){
+      let menuId = Math.floor(Math.random() * 60);
+    }
+
+    try{
+      const body = {
+
+        userId: userId,
+        constraintId: 1,
+        quantity: [
+          {
+            quantity: this._quantiy,
+            mealId: Meal,
+            menuId: menu
+          }
+        ]
+
+      }
+      return this.http.request('PUT',this.API_URL + '/order/add', {headers: this.createAuthorizationHeader(), body, responseType: 'json'}).subscribe(
+        index => console.table(index),
+        err => console.table(err)
+      );
+    }catch (e){
+      console.error('Échec lors de la commande');
     }
   }
 

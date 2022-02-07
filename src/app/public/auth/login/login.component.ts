@@ -32,13 +32,13 @@ forgotpassword(): void {
     this.router.navigateByUrl('public/auth/forgot-password');
   }
 
-  async onSubmit(f: FormGroupDirective): Promise<void> {
+  onSubmit(f: FormGroupDirective): void {
     if(this.loginForm.valid) {
-      await this.authService.login(f.value.email, f.value.password);
+      this.authService.login(f.value.email, f.value.password);
       this.authService.isConnected().subscribe((status) => {
         if (status) {
           //redirection
-          this.router.navigate(['/']);
+          this.router.navigate(['/private/admin/weekdishes']);
           //notification utilisateur
           this.notif.onSuccess('Connexion réussi !');
         }

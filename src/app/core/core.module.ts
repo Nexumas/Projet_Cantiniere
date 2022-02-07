@@ -7,20 +7,20 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CategoriesComponent } from '../private/admin/admin-card-edit/categories-card-edit/categories.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HttpClientModule} from '@angular/common/http';
-import {AppModule} from '../app.module';
-import {SharedModule} from '../shared/shared.module';
+import { CardCategoriesComponent } from './components/card-categories/card-categories.component';
 
 
 
 @NgModule({
     declarations: [
         LeftsidebarComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        CardCategoriesComponent
     ],
     exports: [
         LeftsidebarComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        CardCategoriesComponent
     ],
   imports: [
     CommonModule,

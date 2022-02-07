@@ -1,13 +1,22 @@
-.bar-vertiligner {
-  border-right: 0.2vh solid lightgrey;
-
+.container{
+  margin-left: 10%;
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.bar-vertilignel {
-  border-left: 0.2vh solid lightgrey;
-
+.days-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.anti-scroll {
-  overflow-x: hidden;
+app-calendar-dishes{
+  margin: 5px;
+}
+
+@media screen and (max-width: 900px) {
+
 }

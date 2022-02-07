@@ -43,6 +43,7 @@ export class AuthService {
  login(email: string, password: string): void{
       this.apiService.login(email, password).subscribe(async (data: any) => {
       this._isLoggedIn$.next(true);
+
       // On stock le token dans le cache du navigateur
       sessionStorage.setItem('token_api', data.headers.get('Authorization'));
       this.decryptJWT(data.headers.get('Authorization'));

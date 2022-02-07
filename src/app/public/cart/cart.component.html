@@ -1,25 +1,33 @@
-<div class="row mt-4">
-  <div class="col-2 offset-2">
-    <label><b>Lundi</b></label>
-    <label></label>
+<div id="cart-list">
+  <div class="item-cart-list" *ngFor="let item of this.dish.cart">
+    <div class="row mt-4">
+      <div class="col-2 offset-2">
+        <label><b>{{item.jour}}</b></label>
+        <label></label>
+      </div>
+    </div>
+    <div class="row mt-4 text-right">
+      <div class="col-2 offset-2 border-bottom">
+        <label>Plat : {{item.plat}}</label>
+      </div>
+      <div class="col-2 border-bottom">
+        <label>Qté : <input type="number" value="{{qte}}" id="qte" min="1" (change)="add(item)"  [(ngModel)]="value"></label>
+      </div>
+      <div class="col-2 border-bottom">
+        <label>Prix : Available</label>
+      </div>
+      <div class="col-2 border-bottom">
+        <button (click)="this.dish.remove(item)" class="text-danger : red">X</button>
+      </div>
+    </div>
+    <div class="row mt-5" style="background-color: rgb(255, 255, 255);">
+      <div class="col-2 offset-5">
+        <input type="submit" class="btn btn-danger"  style="background-color:gray; border-color: transparent;" (click)="commander(item)" value="Commander"/>
+      </div>
+    </div>
   </div>
+
 </div>
-<div class="row mt-4 text-right">
-  <div class="col-2 offset-2 border-bottom">
-    <label>Plat</label>
-  </div>
-  <div class="col-2 border-bottom">
-    <label>Qté :</label>
-  </div>
-  <div class="col-2 border-bottom">
-    <label>Prix :</label>
-  </div>
-  <div class="col-2 border-bottom">
-    <label><b class="text-danger : red">X</b></label>
-  </div>
-</div>
-<div class="row mt-5" style="background-color: rgb(255, 255, 255);">
-  <div class="col-2 offset-5">
-    <input type="submit" class="btn btn-danger"  style="background-color:gray; border-color: transparent;" value="Commander"/>
-  </div>
-</div>
+
+
+
