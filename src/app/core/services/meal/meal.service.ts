@@ -119,5 +119,8 @@ export class MealService {
     this.meals = [];
   }
 
+  getMealsForWeek(){
+
+  }
 
 }

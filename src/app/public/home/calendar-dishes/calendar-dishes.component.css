@@ -1,0 +1,93 @@
+
+/*
+
+  desactive les puces des listes
+
+*/
+
+li{
+  list-style-type: none;
+}
+
+/*
+
+ Carte de tous les plats
+
+*/
+
+.card-plat{
+  width: 275px;
+  background-color: #ba2929;
+  margin-top: 5px;
+}
+
+.card-plat h1{
+  display: flex;
+  justify-content: center;
+}
+
+.card-list{
+  display: flex;
+  justify-content: center;
+}
+
+.list-plat{
+  display: flex;
+  flex-direction: row;
+}
+
+.list-plat  .plat{
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.plat h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+
+formulaire
+
+*/
+
+
+.form{
+  display: flex;
+  flex-direction: row;
+}
+
+.form-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.footer-form{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.button{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.button:active{
+  box-shadow: 0 0 0 3px rgba(89, 5, 5, 0.3);
+}
+
+.button:disabled{
+  background-color: #3f3f3f;
+}

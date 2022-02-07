@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import {AuthModule} from './auth/auth.module';
 import { CardDishesComponent } from './card-dishes/card-dishes.component';
+import { CalendarDishesComponent } from './home/calendar-dishes/calendar-dishes.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,11 +15,13 @@ import { CardDishesComponent } from './card-dishes/card-dishes.component';
     HomeComponent,
     CartComponent,
     CardDishesComponent,
+    CalendarDishesComponent,
   ],
   imports: [
     CommonModule,
     PublicRoutingModule,
-    AuthModule
+    AuthModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,

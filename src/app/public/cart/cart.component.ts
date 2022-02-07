@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cart } from 'src/app/core/models/cart/cart';
+import { DayDishesService } from 'src/app/core/services/dayDishes/day-dishes.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  @Input() public value: number;
+  qte: number = 1;
+
+  constructor(public dish: DayDishesService) { }
 
   ngOnInit(): void {
+
+    this.value = 1;
+    if(!sessionStorage.getItem('cart')){
+      sessionStorage.setItem('cart', JSON.stringify([]));
+    }else if (this.dish.cart.length <= 0) {
+      this.dish.cart = JSON.parse(sessionStorage.getItem('cart'));
+      this.value = this.dish.cart['0'].qte;
+    }
+
+  }
+
+  add(cart: Cart){
+    let newCart: Cart = {
+      jour: cart.jour,
+      plat: cart.plat,
+      type: cart.type,
+      qte: this.value
+    }
+    this.dish.UpdateCart(newCart);
   }
 
 }

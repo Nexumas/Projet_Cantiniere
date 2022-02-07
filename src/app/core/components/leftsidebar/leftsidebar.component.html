@@ -30,14 +30,20 @@
           <mat-icon [routerLink]="['public/cart']" class="item-nav" matTooltip="Panier">shopping_cart</mat-icon>
           <a class="nav-link" [routerLink]="['public/cart']">Panier</a>
           <ul class="dropdown-content">
+            <li *ngFor="let item of dish.cart" class="item-nav"><p>{{item.jour}} || {{item.plat}} || {{item.qte}}</p></li>
           </ul>
         </div>
       </li>
-      <br>
-      <li>
+      <li *ngIf="!(auth.isAdmin() | async); else gestionplatadmin">
         <mat-icon [routerLink]="['/']"  class="item-nav" matTooltip="Plats de la semaine">lunch_dining</mat-icon>
         <a class="nav-link" [routerLink]="['/']"><div>Plats de la semaine</div></a>
       </li>
+      <ng-template #gestionplatadmin>
+        <li>
+          <mat-icon [routerLink]="['/private/admin/weekdishes']"  class="item-nav" matTooltip="Plats de la semaine">lunch_dining</mat-icon>
+          <a class="nav-link" [routerLink]="['/private/admin/weekdishes']"><div>Gestion plats de la semaine</div></a>
+        </li>
+      </ng-template>
       <li>
         <mat-icon [routerLink]="['public/carddishes']" class="item-nav" matTooltip="Carte">list_alt</mat-icon>
         <a class="nav-link" [routerLink]="['public/carddishes']">Carte</a>

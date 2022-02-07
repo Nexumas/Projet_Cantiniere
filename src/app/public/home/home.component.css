@@ -1,13 +1,7 @@
-.bar-vertiligner {
-  border-right: 0.2vh solid lightgrey;
-
-}
-
-.bar-vertilignel {
-  border-left: 0.2vh solid lightgrey;
-
-}
-
-.anti-scroll {
-  overflow-x: hidden;
+.days-list{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 210px;
 }
