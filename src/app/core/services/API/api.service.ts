@@ -56,9 +56,12 @@ export class ApiService {
   }
 
   // Appel API pour cartes
-  mealsForThisWeek(): Observable<HttpResponse<object>>{
+  mealsForThisWeek(): Observable<LtIngredient[]>{
     try{
-      return this.http.request('GET', this.API_URL + '/meal/findallavailablefortoday', {responseType: 'json', observe: 'response'});
+      return this.http.get<any[]>(this.API_URL + '/meal/findallavailablefortoday')
+        .pipe(
+          map((ingredients: LtIngredient[]) => ingredients)
+        );
     }catch (e){
       throw new Error('Echec de la recuperation des infos !');
     }

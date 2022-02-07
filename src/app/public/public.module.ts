@@ -8,6 +8,7 @@ import {AuthModule} from './auth/auth.module';
 import { CardDishesComponent } from './card-dishes/card-dishes.component';
 import { CalendarDishesComponent } from './home/calendar-dishes/calendar-dishes.component';
 import {FormsModule} from "@angular/forms";
+import {CoreModule} from '../core/core.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     PublicRoutingModule,
     AuthModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   exports: [
     HomeComponent,

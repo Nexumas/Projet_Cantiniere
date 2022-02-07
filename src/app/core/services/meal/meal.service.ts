@@ -29,6 +29,16 @@ export class MealService {
     return this._ltMeal$;
   }
 
+  async getAllMealsForThisWeek(): Promise<BehaviorSubject<LtMeal[]>> {
+    await new Promise<void>(done => setTimeout(() => done(), 700));
+    this.apiService.mealsForThisWeek().subscribe(value => {
+      this.addMealToList(value);
+      this._ltMeal$.next(this.getMealList());
+    });
+    this.meals = [];
+    return this._ltMeal$;
+  }
+
   //ajouter un ou plusieurs tableaux de LtMeal à une liste
   addMealToList(data){
     let meal: LtMeal;
